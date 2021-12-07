@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 
 class customerController extends Controller
 {
-    
-    public function index()
+     public function index()
     {
         // $customer = customer::latest()->get();
         // return response()->json($customer);
