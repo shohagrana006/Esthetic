@@ -22,21 +22,42 @@ Route::prefix('v1')->group(function (){
     Route::post('login',[App\Http\Controllers\Admin\AuthController::class,'login']);
     Route::group(['middleware' => 'auth:api',  'namespace' => 'App\Http\Controllers\Admin'],function (){
         Route::get('logout' ,'AuthController@logout');
+        //customer route
+        Route::get('customer/index','CustomerController@index');
+        Route::post('customer/store','CustomerController@store');
+        Route::get('customer/edit/{id}','CustomerController@edit');
+        Route::post('customer/update/{id}','CustomerController@update');
+        Route::get('customer/delete/{id}','CustomerController@destroy');
+        //suppliers route
+        Route::get('supplier/index','SupplierController@index');
+        Route::post('supplier/store','SupplierController@store');
+        Route::get('supplier/edit/{id}','SupplierController@edit');
+        Route::post('supplier/update/{id}','SupplierController@update');
+        Route::get('supplier/delete/{id}','SupplierController@destroy');
+        //unit route
         Route::get('unit/index','UnitController@index');
         Route::post('unit/store','UnitController@store');
         Route::get('unit/edit/{id}','UnitController@edit');
         Route::post('unit/update/{id}','UnitController@update');
         Route::get('unit/delete/{id}','UnitController@destroy');
+        //warehouse route
         Route::get('warehouse/index','WarehouseController@index');
         Route::post('warehouse/store','WarehouseController@store');
         Route::get('warehouse/edit/{id}','WarehouseController@edit');
         Route::post('warehouse/update/{id}','WarehouseController@update');
         Route::get('warehouse/delete/{id}','WarehouseController@destroy');
+        //category route
         Route::get('category/index','CategoryController@index');
         Route::post('category/store','CategoryController@store');
         Route::get('category/edit/{id}','CategoryController@edit');
         Route::post('category/update/{id}','CategoryController@update');
         Route::get('category/delete/{id}','CategoryController@destroy');
+        //subcategory route
+        Route::get('subcategory/index','SubCategoryController@index');
+        Route::post('subcategory/store','SubCategoryController@store');
+        Route::get('subcategory/edit/{sub_category_slug}','SubCategoryController@edit');
+        Route::post('subcategory/update/{sub_category_slug}','SubCategoryController@update');
+        Route::get('subcategory/delete/{sub_category_slug}','SubCategoryController@destroy');
 
     });
 
