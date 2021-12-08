@@ -58,6 +58,18 @@ Route::prefix('v1')->group(function (){
         Route::get('subcategory/edit/{sub_category_slug}','SubCategoryController@edit');
         Route::post('subcategory/update/{sub_category_slug}','SubCategoryController@update');
         Route::get('subcategory/delete/{sub_category_slug}','SubCategoryController@destroy');
+        //brand route
+        Route::get('brand/index','BrandController@index');
+        Route::post('brand/store','BrandController@store');
+        Route::get('brand/edit/{brand_slug}','BrandController@edit');
+        Route::post('brand/update/{brand_slug}','BrandController@update');
+        Route::get('brand/delete/{id}','BrandController@destroy');
+        //product route
+        Route::get('product/index','ProductController@index');
+        Route::post('product/store','ProductController@store');
+        Route::get('product/edit/{id}','ProductController@edit');
+        Route::post('product/update/{id}','ProductController@update');
+        Route::get('product/delete/{id}','ProductController@destroy');
 
     });
 

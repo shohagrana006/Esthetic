@@ -29,6 +29,7 @@ class Controller extends BaseController
 
     }
     public function RespondWithEorror($massage='',$data=[],$code){
+
         return response()->json([
             'error'=>true,
             'message'=>$massage,
