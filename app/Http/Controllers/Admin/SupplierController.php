@@ -1,100 +1,73 @@
 <?php
 
-namespace App\Http\Controllers;
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 use App\Models\Supplier;
-
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class SupplierController extends Controller
 {
     public function index()
     {
-        $supplier = Supplier::latest()->get();
-        return response()->json($supplier);
+        $customer =Supplier::orderBy('id', 'desc')->get();
+        return $this->RespondWithSuccess('All supplier view  successful', $customer, 200);
     }
 
-    
-    public function create()
-    {
-        //
-    }
-
-    
     public function store(Request $request)
     {
-        $supplier= new Supplier;
-        $supplier->name=$request->name;
-        $supplier->phone=$request->phone;
-        $supplier->address=$request->address;
-        $result=$supplier->save();
+        $validator = Validator::make($request->all(), [
+            'supplier_name' => 'required',
+            'supplier_email' => 'string|email|max:255|unique:suppliers',
+            'supplier_phone_number' => 'unique:suppliers',
+        ]);
+        if ($validator->fails()) {
+            return $this->RespondWithEorror('validation customer error ', $validator->errors(), 422);
+        }
+        try {
+            $data = Supplier::create($request->all());
+            return $this->RespondWithSuccess('Supplier  successful', $data, 200);
+        } catch (Exception $e) {
+            return $this->RespondWithEorror('Supplier not successful  ', $e->getMessage(), 400);
+        }
 
-        if($result){
-            return["data has been saved"];
-        }
-        else{
-            return["operation failed"];
-        }
     }
 
-    
-    public function show($id)
-    {
-        //
-    }
-
-    
     public function edit($id)
     {
-        $supplier = Supplier::find($id);
-        return response()->json($supplier);
+        $data = Supplier::find($id);
+        return $this->RespondWithSuccess('Customer edit successful', $data, 200);
     }
 
-    
     public function update(Request $request, $id)
     {
-        $supplier = Supplier::find($id);
-        $name = request('name');
-        $phone = request('phone');
-        $address = request('address');
-        
-        $result=  $supplier->update([
+        $validator = Validator::make($request->all(), [
+            'supplier_email' => 'string|email|max:255|unique:suppliers,supplier_email,' . $id,
+            'supplier_phone_number' => 'unique:suppliers,supplier_phone_number,' . $id,
 
-            'name'=> $name,
-            'phone'=>  $phone,
-            'address'=> $address,
-            
-
-            ]);
-
-            if($result){
-               // return["updated successfully"];
-
-                return response()->json(["data has been updated"]);
-            }
-            else{
-               return response()->json(["not updated"]);
-                //return["not updated"];
-            }
+        ]);
+        if ($validator->fails()) {
+            return $this->RespondWithEorror('validation supplier error ', $validator->errors(), 422);
+        }
+        try {
+            $data = Supplier::where('id', $id)->update($request->all());
+            return $this->RespondWithSuccess('supplier update successful', $data, 200);
+        } catch (Exception $e) {
+            return $this->RespondWithEorror('supplier update not successful  ', $e->getMessage(), 400);
+        }
     }
 
-    
     public function destroy($id)
     {
-        $supplier = Supplier::find($id);
+        Supplier::destroy($id);
+        return response()->json([
+            'success' => true,
+            'message' => ' Supplier Deleted Successful'
+        ]);
 
 
-         $data =  $supplier ->delete();
-
-        
-
-         if ($data) {
-            return["Successfully deleted!"];
-            
-            
-         } else {
-            return["not deleted!"]; 
-            
-         }
     }
 }

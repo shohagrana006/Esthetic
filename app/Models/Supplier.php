@@ -9,5 +9,4 @@ class Supplier extends Model
 {
     use HasFactory;
     protected $guarded=['id'];
-
 }
