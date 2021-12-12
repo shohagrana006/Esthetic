@@ -71,6 +71,9 @@ Route::prefix('v1')->group(function (){
         Route::post('product/update/{id}','ProductController@update');
         Route::get('product/delete/{id}','ProductController@destroy');
 
+        
+
+
     });
 
 
