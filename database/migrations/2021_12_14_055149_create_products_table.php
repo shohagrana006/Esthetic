@@ -31,14 +31,20 @@ class CreateProductsTable extends Migration
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+             $table->foreignId('branch_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('sku');
             $table->string('product_name');
             $table->tinyInteger('barcode');
-            $table->tinyInteger('product_status');
+            $table->tinyInteger('product_status')->default('1');
             $table->tinyInteger('product_applicable_tax');
             $table->tinyInteger('product_selling_tax')->nullable();
+            $table->double('quantity')->default('0');
+            $table->double('seling_price')->default('0');
+            $table->double('discount')->default('0')->nullable();
             $table->string('image');
-            $table->string('business_location')->nullable();
             $table->text('product_description')->nullable();
             $table->timestamps();
         });
