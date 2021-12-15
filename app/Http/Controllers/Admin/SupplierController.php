@@ -1,11 +1,13 @@
 <?php
 
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
 
 class SupplierController extends Controller
 {
@@ -65,6 +67,7 @@ class SupplierController extends Controller
             'success' => true,
             'message' => ' Supplier Deleted Successful'
         ]);
+
 
     }
 }
