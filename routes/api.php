@@ -110,6 +110,38 @@ Route::prefix('v1')->group(function () {
                 'purchage/updatepending/{id}',
                 'PurchageController@updatePurchaseStatus'
             );
+            //damage route
+            Route::get('damage/index', 'DamageController@index');
+            Route::post('damage/store', 'DamageController@store');
+            Route::get('damage/edit/{id}', 'DamageController@edit');
+            Route::post('damage/update/{id}', 'DamageController@update');
+            Route::get('damage/delete/{id}', 'DamageController@destroy');
+            //expense route
+            Route::get('expense/index', 'ExpenseController@index');
+            Route::post('expense/store', 'ExpenseController@store');
+            Route::get('expense/edit/{id}', 'ExpenseController@edit');
+            Route::post('expense/update/{id}', 'ExpenseController@update');
+            Route::get('expense/delete/{id}', 'ExpenseController@destroy');
+
+            Route::get('expense/today', 'ExpenseController@today_expence');
+            Route::get('expense/month/{month?}', 'ExpenseController@monthly_expense');
+            Route::get('expense/yearly/{year?}', 'ExpenseController@yearly_expense');
+
+            //invoice route
+            Route::get('invoice/index', 'InvoiceController@index');
+            Route::get('product/search/{sku}', 'InvoiceController@productSearch');
+            Route::post('invoice/store', 'InvoiceController@store');
+            Route::get('invoice/delete/{id}', 'InvoiceController@destroy');
+            Route::get('invoice/pending', 'InvoiceController@getPending');
+
+
+
+
+
+
+
+
+
         }
     );
 });

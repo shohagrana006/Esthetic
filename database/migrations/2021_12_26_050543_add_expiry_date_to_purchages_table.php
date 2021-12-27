@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBrandsTable extends Migration
+class AddExpiryDateToPurchagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateBrandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('brands', function (Blueprint $table) {
-            $table->id();
-            $table->string('brand_name');
-            $table->string('brand_slug')->nullable();
-            $table->string('brand_logo')->nullable();
-            $table->timestamps();
+        Schema::table('purchages', function (Blueprint $table) {
+            $table->date('expiry_date');
+
         });
     }
 
@@ -29,6 +26,8 @@ class CreateBrandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brands');
+        Schema::table('purchages', function (Blueprint $table) {
+            //
+        });
     }
 }
