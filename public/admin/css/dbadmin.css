@@ -1,0 +1,42 @@
+/* Sidebar Section */
+.brand-text{
+    font-weight: 600;
+    color: white;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+	color: #fff;
+	background-color: #28346d;
+}
+.nav-pills .nav-link {
+	color: white;
+}
+.nav-sidebar > .nav-header, .sidebar-form {
+	overflow: hidden;
+	text-overflow: clip;
+	color: white;
+	font-weight: bold;
+}
+.fa-search::before {
+	content: "\f002";
+	color: white;
+	padding: 10.3px 14px;
+	margin-left: -12px;
+}
+.navbar-light .navbar-nav .nav-link {
+	color: #232b55 !important;
+	font-weight: 600;
+}
+/* Navbar Section */
+.navbar-light .navbar-nav .nav-link {
+	color: white;
+}
+#user-drp-btn i{
+    width: 25px;
+}
+#dropdownMenuButton {
+	background: transparent;
+	color: #232b55;
+	border: none;
+	margin-top: 3px;
+	font-weight: bold;
+}

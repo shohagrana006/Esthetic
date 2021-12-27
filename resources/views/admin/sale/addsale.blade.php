@@ -1,0 +1,159 @@
+@extends('admin.master')
+@section('content')
+       <section class="purchase-sec mt-3">
+            <div class="container-fluid">
+                <h1>Sales</h1>
+                <hr>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <form action="#">
+                            <a href="" class="btn-purchase"><i class="far fa-plus-circle" aria-hidden="true"></i> Add Sales</a>
+
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-6" id="left-col">
+                                    <!-- Supplier Buttons -->
+                                    <div class="box-3">
+                                        <label>Supplier</label>
+                                        <select name="supplier" id="supplier">
+                                    <option value="1">Supplier-1</option>
+                                    <option value="2">Supplier-2</option>
+                                    <option value="3">Supplier-3</option>
+                                </select>
+                                        <a href="" class="btn-supplier"><i class="far fa-plus-circle" aria-hidden="true"></i></a>
+                                    </div>
+                                    <!-- Address Button -->
+                                    <div class="adress box">
+                                        <label>Address</label>
+                                        <input type="text" placeholder="Supplier Address">
+                                    </div>
+
+                                    <!-- Price Rate section -->
+                                    <div class="rate box">
+                                        <label>Rate</label>
+                                        <input type="text" id="rate" placeholder="Rate">
+                                        <select name="rate">
+                                            <option value="1">Tk</option>
+                                            <option value="2">$</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Paid Rate section -->
+                                    <div class="paid box">
+                                        <label>Paid Amount</label>
+                                        <input type="text" id="paid" placeholder="Paid Amount"><select name="paid">
+                                    <option value="1">Tk</option>
+                                    <option value="2">$</option>
+                                </select>
+                                    </div>
+
+                                </div>
+                                <!--  left-col Ends -->
+
+                                <div class="col-xl-4 col-lg-4 col-md-6" id="middle-col">
+                                    <!-- Reference Buttons -->
+                                    <div class="refer box-2">
+                                        <label>Reference NO.</label>
+                                        <input type="text" placeholder="Enter Referance Number">
+                                    </div>
+
+                                    <!-- Product section -->
+                                    <div class="product dropdown">
+                                        <label>Product/SKU</label>
+                                        <select name="product/sku" id="product-sku">
+                                    <option value="1">Product item-1</option>
+                                    <option value="2">Product item-2</option>
+                                    <option value="3">Product item-3</option>
+                                </select>
+                                    </div>
+
+                                    <!-- Quantity Button -->
+                                    <div class="quantity box-2">
+                                        <label>Quantity</label>
+                                        <input type="number" placeholder="Select Quantity">
+                                    </div>
+
+                                    <!-- Due Amount section -->
+                                    <div class="box">
+                                        <label>Due Amount</label>
+                                        <input type="text" id="due" placeholder="Due Amount"><select name="due">
+                                    <option value="1">Tk</option>
+                                    <option value="2">$</option>
+                                </select>
+                                    </div>
+
+                                </div>
+                                <!-- middle-col Ends -->
+
+                                <div class="col-xl-4 col-lg-4 col-md-6" id="right-col">
+                                    <!-- Warehouse Section -->
+                                    <div class="warehouse dropdown">
+                                        <label>Warehouse</label>
+                                        <select name="Warehouse" id="warehouse">
+                                    <option value="1">Warehouse-1</option>
+                                    <option value="2">Warehouse-2</option>
+                                    <option value="3">Warehouse-3</option>
+                                </select>
+                                    </div>
+                                    <!-- Purchase Date section -->
+                                    <div class="purchase-date box-2">
+                                        <label>Purchase Date</label>
+                                        <input type="date" id="start" name="trip-start" value="2022-01-12" min="2018-01-01" max="2050-12-31">
+                                    </div>
+
+                                    <!-- Payable amount section -->
+                                    <div class="payable box">
+                                        <label for="payable">Payable Amount</label>
+                                        <input type="text" id="payable" placeholder="Payable Amount"><select name="payable">
+                                    <option value="1">Tk</option>
+                                    <option value="2">$</option>
+                                </select>
+                                    </div>
+
+                                    <!-- Purchase Status Section -->
+                                    <div class="purchase-status dropdown">
+                                        <label>Purchase Status</label>
+                                        <select name="warehouse" id="purchase-status">
+                                    <option value="1">Received</option>
+                                    <option value="2">Partial</option>
+                                    <option value="3">Pending</option>
+                                    <option value="4">Ordered</option>
+                                </select>
+                                    </div>
+                                </div>
+                                <!-- right-col Ends -->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6" id="left-side">
+                                    <div class="business-location dropdown">
+                                        <label>Business Location/Branch</label>
+                                        <select name="branch" id="branch">
+                                    <option value="1">Bashundhara</option>
+                                    <option value="2">Mirpur</option>
+                                    <option value="1">Tongi</option>
+                                    <option value="1">Badda</option>
+                                    <option value="1">Gulshan</option>
+                                </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6" id="right-side">
+                                    <div class="attach-filed box-2">
+                                        <label>Attach Document</label>
+                                        <input type="file" id="attach">
+                                        <p>Max size 25MB (pdf,csv,doc,jpeg,png)</p>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-xl-3 col-sm-4">
+                                    <button class="btn-purchase-submit" id="add-task">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @endsection

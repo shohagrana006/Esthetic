@@ -1,0 +1,177 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  .log-reg-page a {
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .log-reg-page input[type="submit"] {
+      -webkit-tap-highlight-color: transparent;
+  }
+  
+  .log-reg-page input:focus {
+    outline: transparent;
+  }
+  
+  .log-reg-page .d-flex {
+    display: flex;
+  }
+  
+  .log-reg-page .flex-direction-column {
+    flex-direction: column;
+  }
+  
+  .log-reg-page .justify-content-center {
+    justify-content: center;
+  }
+  
+  .log-reg-page  .justify-content-space-evenly {
+    justify-content: space-evenly;
+  }
+  
+  .log-reg-page  .align-items-center {
+    align-items: center;
+  }
+  
+  .log-reg-page .margin-auto {
+    margin: auto;
+  }
+  
+  .log-reg-page .margin-buttom {
+    margin-bottom: 1em;
+  }
+  
+  .log-reg-page .margin-buttom-sm {
+    margin-bottom: 0.5em;
+  }
+  
+  .log-reg-page  .bg--primary {
+    background-color: #3c8ac9;
+  }
+  
+  .log-reg-page  .bg--secondary {
+    background-color: #232b55;
+  }
+  
+  .log-reg-page  .bg--white {
+    background-color: #efefef;
+  }
+  
+  .log-reg-page  .color--primary {
+    color: #a7c5eb;
+  }
+  
+  .log-reg-page .color--secondary {
+    color: #232b55;
+  }
+  
+  .log-reg-page .color--tertionary {
+    color: #232b55;
+  }
+  
+  .log-reg-page  .border-radius {
+    border-radius: 0.5em;
+  }
+  
+  .log-reg-page  .border-radius--lg {
+    border-radius: 1.2em;
+  }
+  
+  .log-reg-page  .border-radius--round {
+    border-radius: 50%;
+  }
+  
+  .log-reg-page  .border-radius--left {
+    border-radius: 0.5em 0 0 0.5em;
+  }
+  
+  .log-reg-page  .container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .log-reg-page .login__card {
+    height: 35em;
+    width: 22em;
+    box-shadow: rgba(65, 60, 105, 0.5) 0 0 1em;
+  }
+  
+  .log-reg-page .title {
+    letter-spacing: 2px;
+  }
+  
+  .log-reg-page  .login__username,
+  .log-reg-page .login__password {
+    height: 2.3em;
+    box-shadow: 1px 1px 5px #777;
+  }
+  
+  .log-reg-page  .login__username span:nth-child(1),
+  .login__password span:nth-child(1) {
+    height: 100%;
+    width: 3em;
+  }
+  
+  .log-reg-page .login__username input,
+  .login__password input {
+    width: 17em;
+    padding: 0.1em 0.6em;
+    border: none;
+    background-color: transparent;
+    font-weight: 600;
+    font-size: .8em;
+    letter-spacing: 0.7px;
+  }
+  .log-reg-page .container, .container-lg, .container-md, .container-sm, .container-xl {
+	max-width: 1440px;
+}
+  
+.log-reg-page .login__btn {
+    height: 2.5em;
+    width: 10em;
+    border: none;
+    box-shadow: 1px 1px 5px #777;
+    font-size: .8em;
+    font-weight: bold;
+    line-height: 2em;
+    cursor: pointer;
+  }
+  
+  .log-reg-page .login__btn:hover {
+    transform: scale(1.05);
+  }
+  
+  .log-reg-page  .login__btn:active {
+    transform: scale(0.9);
+  }
+  
+  .log-reg-page  .forget__link:hover {
+    opacity: 0.8;
+  }
+  
+  .log-reg-page  .forget__link:active {
+    transform: scale(0.9);
+  }
+  
+  .log-reg-page  .login__using__title hr {
+    border-color: #a7c5eb;
+    width: 5em;
+    margin: 0.5em;
+  }
+  
+  .log-reg-page  .login__using__icon {
+    height: 1.5em;
+    width: 1.5em;
+    font-size: 1.2em;
+  }
+  
+  .log-reg-page .login__using__icon:hover {
+    background-color: #3c8ac9;
+    color: #4a47a3;
+  }
+  
