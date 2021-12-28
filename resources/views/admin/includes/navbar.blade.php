@@ -1,3 +1,4 @@
+@auth
 <nav class="main-header topHeader navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -48,15 +49,24 @@
         <li class="admin-icon">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle user-drop-btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent;">
-                    <img src="img/Profile_id.png" alt="" style="width: 30px;"> Admin</button>
+                    <img src="img/Profile_id.png" alt="" style="width: 30px;">{{ Auth::user()->name }}</button>
                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile </a></li>
                     <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Setting</a></li>
                     <li><a class="dropdown-item" href="#"><i class="fas fa-user-friends"></i> Switch user</a></li>
                     <li><a class="dropdown-item" href="#"><i class="fa fa-dollar-sign"></i> My transaction</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Logout </a></li>
+                    <li><a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        <i class="fas fa-sign-out-alt"></i> Logout </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
                 </ul>
             </div>
         </li>
     </ul>
   </nav>
+@endauth
+

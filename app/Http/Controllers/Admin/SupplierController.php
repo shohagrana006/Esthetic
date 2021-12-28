@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -8,13 +7,17 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-
 class SupplierController extends Controller
 {
     public function index()
     {
-        $customer =Supplier::orderBy('id', 'desc')->get();
-        return $this->RespondWithSuccess('All supplier view  successful', $customer, 200);
+        $customers = Supplier::orderBy('id', 'desc')->get();
+        return view('admin.supplier.supplier', compact('customers'));
+    }
+
+    public function create()
+    {
+        return view('admin.supplier.addsupplier');
     }
 
     public function store(Request $request)
@@ -25,38 +28,48 @@ class SupplierController extends Controller
             'supplier_phone_number' => 'unique:suppliers',
         ]);
         if ($validator->fails()) {
-            return $this->RespondWithEorror('validation customer error ', $validator->errors(), 422);
+            return  $validator->errors();
         }
         try {
-            $data = Supplier::create($request->all());
-            return $this->RespondWithSuccess('Supplier  successful', $data, 200);
+            Supplier::create($request->all());
+            $this->RespondWithSuccess('Supplier  successful');
+            return redirect()->back();
         } catch (Exception $e) {
-            return $this->RespondWithEorror('Supplier not successful  ', $e->getMessage(), 400);
+             $this->RespondWithEorror(
+                'Supplier not successful',
+                $e->getMessage()
+            );
         }
-
     }
 
     public function edit($id)
     {
         $data = Supplier::find($id);
-        return $this->RespondWithSuccess('Customer edit successful', $data, 200);
+        return $data;
     }
 
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'supplier_email' => 'string|email|max:255|unique:suppliers,supplier_email,' . $id,
-            'supplier_phone_number' => 'unique:suppliers,supplier_phone_number,' . $id,
-
+            'supplier_email' =>
+                'string|email|max:255|unique:suppliers,supplier_email,' . $id,
+            'supplier_phone_number' =>
+                'unique:suppliers,supplier_phone_number,' . $id,
         ]);
         if ($validator->fails()) {
-            return $this->RespondWithEorror('validation supplier error ', $validator->errors(), 422);
+           return  $validator->errors();
         }
         try {
-            $data = Supplier::where('id', $id)->update($request->all());
-            return $this->RespondWithSuccess('supplier update successful', $data, 200);
+            Supplier::where('id', $id)->update($request->all());
+            return $this->RespondWithSuccess(
+                'supplier update successful'
+            );
         } catch (Exception $e) {
-            return $this->RespondWithEorror('supplier update not successful  ', $e->getMessage(), 400);
+            return $this->RespondWithEorror(
+                'supplier update not successful  ',
+                $e->getMessage(),
+
+            );
         }
     }
 
@@ -65,9 +78,7 @@ class SupplierController extends Controller
         Supplier::destroy($id);
         return response()->json([
             'success' => true,
-            'message' => ' Supplier Deleted Successful'
+            'message' => ' Supplier Deleted Successful',
         ]);
-
-
     }
 }

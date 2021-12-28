@@ -1,3 +1,7 @@
+@auth
+
+@endauth
+
 <aside class="main-sidebar elevation-4" style="background: #232b55;">
     <ul style="padding: 0; margin: 0;">
         <li class="nav-item">
@@ -35,13 +39,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('supplier') }}" class="nav-link">
+                            <a href="{{ route('supplier.index') }}" class="nav-link">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Supplier</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('addsupplier') }}" class="nav-link">
+                            <a href="{{ route('supplier.create') }}" class="nav-link">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Add Supplier</p>
                             </a>
@@ -286,10 +290,17 @@
                     </ul>
                 </li>
                  <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Logout</p>
+                 <a href="{{ route('logout') }}"
+                 onclick="event.preventDefault();
+                 document.getElementById('logout-form').submit();"
+                 class="nav-link active">
+                 <i class="nav-icon fas fa-tachometer-alt"></i>
+
+                <p>Logout</p>
             </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
           </li>
 
                 <li class="nav-item">

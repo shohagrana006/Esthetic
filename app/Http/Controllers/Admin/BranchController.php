@@ -13,36 +13,25 @@ class BranchController extends Controller
     public function index()
     {
         $branchs = Branch::orderBy('id', 'desc')->get();
-        return $this->RespondWithSuccess(
-            'All Branch view  successful',
-            $branchs,
-            200
-        );
+        return view();
+
     }
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'branch_name' => 'required',
         ]);
-        if ($validator->fails()) {
-            return $this->RespondWithEorror(
-                'validation branch error ',
-                $validator->errors(),
-                422
-            );
-        }
         try {
             $input = $request->all();
             $input['branch_slug'] = null;
             $input['branch_slug'] = Str::slug($request->branch_name);
-            $data = Branch::create($input);
-            return $this->RespondWithSuccess('branch  successful', $data, 200);
+            Branch::create($input);
+            return $this->RespondWithSuccess('branch  successful');
         } catch (Exception $e) {
             return $this->RespondWithEorror(
                 'branch not successful  ',
                 $e->getMessage(),
-                400
             );
         }
     }
@@ -50,19 +39,8 @@ class BranchController extends Controller
     public function edit($branch_slug)
     {
         $data = Branch::Where('branch_slug', $branch_slug)->get();
-        if (!empty($data)) {
-            return $this->RespondWithSuccess(
-                'Branch edit successful',
-                $data,
-                200
-            );
-        } else {
-            return $this->RespondWithEorror(
-                'branch edit not successful  ',
-                $data,
-                400
-            );
-        }
+        return view();
+
     }
 
     public function update(Request $request, $branch_slug)

@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="{{ asset('public') }}/admin/css/styles.css">
     <link rel="stylesheet" href="{{ asset('public') }}/admin/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 
@@ -22,7 +23,7 @@
     </div>
         @include('admin.includes.navbar')
         @include('admin.includes.sidebar')
-     
+
 
       <div class="content-wrapper">
         <div class="content-header">
@@ -35,7 +36,7 @@
             </div>
         </div>
     </div>
- 
+
 
 
 
@@ -58,7 +59,7 @@
     <script src="{{ asset('public') }}/admin/js/adminlte.js"></script>
     <script src="{{ asset('public') }}/admin/js/demo.js"></script>
     <script src="{{ asset('public') }}/admin/js/dashboard.js"></script>
-   
+
     <script src="{{ asset('public') }}/admin/js/main.js"></script>
     <script>
         $.widget.bridge('uibutton', $.ui.button)
@@ -110,6 +111,20 @@
             });
 
         });
+    </script>
+
+    {{-- <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    {!! Toastr::message() !!}
+    <script>
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+                  toastr.error('{{ $error }}','Error',{
+                      closeButton:true,
+                      progressBar:true,
+                   });
+            @endforeach
+        @endif
     </script>
 
 </body>

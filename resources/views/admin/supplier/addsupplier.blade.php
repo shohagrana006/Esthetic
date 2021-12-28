@@ -17,13 +17,21 @@
                                         </div>
                                         <div class="row mt-3 save-form-border ">
                                             <div class="col-md-6 col-sm-6">
-                                                <form action="">
+                                                <form action="{{ route('suppliers.store') }}" method="POST" >
+                                                    @csrf
                                                     <label for=""><h5>Supplier Name</h5></label>
-                                                    <input type="text" class="form-control" placeholder="Business Name">
-                                                    <button><strong>Save</strong></button>
+                                                    
+                                                    <input type="text" class="form-control" name="supplier_name" class="form-control @error('supplier_name') is-invalid @enderror" name="supplier_name" value="{{ old('supplier_name') }}" placeholder="supplier Name"><br>
+                                                    <label for=""><h5>Supplier Email</h5></label>
+                                                    <input type="email" class="form-control" name="supplier_email" placeholder="supplier Email"><br>
+                                                    <label for=""><h5>Supplier Email</h5></label>
+                                                    <input type="text" class="form-control" name="supplier_phone_number" placeholder="supplier phone"><br>
+                                                    <label for=""><h5>Supplier Name</h5></label>
+                                                    <input type="text" class="form-control" name="supplier_about_info" placeholder="supplier address"><br>
+                                                   <br> <button><strong>Save</strong></button>
                                                 </form>
                                             </div>
-                                        </div>                                                                       
+                                        </div>
                                     </div>
                                 </div>
                             </div>

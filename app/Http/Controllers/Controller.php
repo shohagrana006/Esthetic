@@ -6,35 +6,20 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Brian2694\Toastr\Facades\Toastr;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-//    public function validation_error($message,$massages=[],$code){
-//        $response=[
-//            'status'=>false,
-//            'message'=>$message,
-//
-//        ];
-//        !empty($massages)?$response['errors']=$massages:null;
-//        return  response()->json( $response,$code);
-//    }
-    public function RespondWithSuccess($massage='',$data=[],$code){
-        return response()->json([
-            'success'=>true,
-            'message'=>$massage,
-            'data'=>$data,
-        ], $code);
+    public function RespondWithSuccess($message){
+
+        Toastr::success($message ,'Success');
 
     }
-    public function RespondWithEorror($massage='',$data=[],$code){
+    public function RespondWithEorror($message){
 
-        return response()->json([
-            'error'=>true,
-            'message'=>$massage,
-            'data'=>$data,
-        ], $code);
+        Toastr::error($message ,'Error' );
 
     }
 }
