@@ -38,6 +38,7 @@ class PurchageController extends Controller
     }
     public function store(Request $request)
     {
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'purchase_date' => 'required',
             'purchage_quantity' => 'required',
@@ -48,44 +49,36 @@ class PurchageController extends Controller
             'purchage_status' => 'required',
         ]);
         if ($validator->fails()) {
-            return $this->RespondWithEorror(
-                'validation purchage error ',
-                $validator->errors(),
-                422
-            );
+            return redirect()
+                ->route('purchage.create')
+                ->withErrors($validator)
+                ->withInput();
         }
         try {
-            $data = Purchage::create($request->all());
-            return $this->RespondWithSuccess(
-                'purchage  successful',
-                $data,
-                200
-            );
+            Purchage::create($request->all());
+
+            $this->RespondWithSuccess('purchage  successful');
+            return redirect()->route('purchage.index');
         } catch (Exception $e) {
-            return $this->RespondWithEorror(
+            $this->RespondWithEorror(
                 'purchage not successful  ',
-                $e->getMessage(),
-                400
+                $e->getMessage()
             );
         }
     }
 
     public function edit($id)
     {
+        $suppliers = Supplier::all();
+        $warehouses = Warehouse::all();
+        $products = Product::all();
+        $branchs = Branch::all();
         $data = Purchage::find($id);
-        if (!empty($data)) {
-            return $this->RespondWithSuccess(
-                'purchage edit successful',
-                $data,
-                200
-            );
-        } else {
-            return $this->RespondWithEorror(
-                'purchage edit not successful  ',
-                $data,
-                400
-            );
-        }
+
+        return view(
+            'admin.purchase.addpurchase',
+            compact('data', 'suppliers', 'warehouses', 'products', 'branchs')
+        );
     }
 
     public function update(Request $request, $id)
@@ -100,24 +93,19 @@ class PurchageController extends Controller
             'purchage_status' => 'required',
         ]);
         if ($validator->fails()) {
-            return $this->RespondWithEorror(
-                'validation purchage error ',
-                $validator->errors(),
-                422
-            );
+            return redirect()
+                ->route('purchage.edit')
+                ->withErrors($validator)
+                ->withInput();
         }
         try {
-            $data = Purchage::find($id)->update($request->all());
-            return $this->RespondWithSuccess(
-                'purchage Update successful',
-                $data,
-                200
-            );
+            Purchage::find($id)->update($request->all());
+            $this->RespondWithSuccess('purchage Update successful');
+            return redirect()->route('purchage.index');
         } catch (Exception $e) {
             return $this->RespondWithEorror(
                 'purchage update not successful  ',
-                $e->getMessage(),
-                400
+                $e->getMessage()
             );
         }
     }
@@ -126,21 +114,11 @@ class PurchageController extends Controller
     {
         $data = Purchage::destroy($id);
         if ($data) {
-            return response()->json(
-                [
-                    'success' => true,
-                    'message' => ' purchage  Deleted Successful',
-                ],
-                200
-            );
+            $this->RespondWithSuccess(' purchage edit successful');
+            return redirect()->route('purchage.index');
         } else {
-            return response()->json(
-                [
-                    'error' => true,
-                    'message' => ' purchage not Deleted Successful',
-                ],
-                400
-            );
+            $this->RespondWithEorror(' purchage edit not successful');
+            return redirect()->route('purchage.index');
         }
     }
     public function getPending()

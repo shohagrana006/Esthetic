@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Warehouse;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -10,7 +11,13 @@ class WarehouseController extends Controller
     public function index()
     {
         $warehouse= Warehouse::all();
-        return response()->json($warehouse);
+        return view('admin.warehouse.warehouse', compact('warehouse'));
+
+        // return response()->json($warehouse);
+    }
+    public function create()
+    {
+        return view('admin.warehouse.addwarehouse');
     }
 
     public function store(Request $request)
@@ -21,45 +28,51 @@ class WarehouseController extends Controller
             'warehouse_phone'=>'required|unique:warehouses',
         ]);
         if ($validator->fails()) {
-            return $this->RespondWithEorror('validation warehouse error ', $validator->errors(), 422);
+            // return $this->RespondWithEorror('validation warehouse error ', $validator->errors(), 422);
+            return redirect('warehouse/create')->withErrors($validator)->withInput();
+
         }
         try {
             $data = Warehouse::create($request->all());
-            return $this->RespondWithSuccess('warehouse  successful', $data, 200);
+            $this->RespondWithSuccess('warehouse successfully created');
+            return redirect()-> route('warehouse.index');
         } catch (Exception $e) {
-            return $this->RespondWithEorror('warehouse not successful  ', $e->getMessage(), 400);
+            $this->RespondWithEorror('warehouse not successful ');
+            return redirect()-> route('warehouse.create');
+
         }
 
     }
     public function edit($id)
     {
-        $data = Warehouse::find($id);
-        return response()->json($data);
+        $warehouse = Warehouse::find($id);
+        return view('admin.warehouse.warehouseedit',compact('warehouse'));
     }
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(),[
              'warehouse_name' => 'unique:warehouses,warehouse_name,'.$id,
-             'warehouse_phone'=>'unique:warehouses,warehouse_phone'.$id,
+             'warehouse_phone'=>'unique:warehouses,warehouse_phone,'.$id,
         ]);
         if ($validator->fails()) {
-            return $this->RespondWithEorror('validation unit error ', $validator->errors(), 422);
+            $this->RespondWithEorror('warehouse validation error ', $validator->errors());
+            return redirect()->back();
         }
         try {
-            $data = Warehouse::find($id)->update($request->all());
-            return $this->RespondWithSuccess('warehouse update successful', $data, 200);
+            $warehouse  = Warehouse::find($id)->update($request->all());
+            $this->RespondWithSuccess('warehouse update successful');
+            return redirect()-> route('warehouse.index');
         } catch (Exception $e) {
-            return $this->RespondWithEorror('warehouse update not successful  ', $e->getMessage(), 400);
+            $this->RespondWithEorror('warehouse update not successful  ', $e->getMessage());
+            return redirect()->back();
         }
 
     }
     public function destroy($id)
     {
         Warehouse::destroy($id);
-        return response()->json([
-            'success' => true,
-            'message' => 'Warehouse  Deleted Successful'
-        ]);
+        $this->RespondWithSuccess('Warehouse  Deleted  successful');
+        return redirect()->back();
 
     }
 }

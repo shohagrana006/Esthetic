@@ -1,10 +1,10 @@
 @extends('admin.master')
 @section('content')
         <div class="pos-specing">
-            <div class="brand-area unit-area">   
+            <div class="brand-area unit-area">
                     <div class="row">
                         <div class="col-xl-10 offset-xl-1 col-md-10 offset-md-1 sectionBg">
-                            
+
                             <h3><strong> Unit List</strong></h3>
                             <hr>
                             <div class="row justify-content-between mb-3">
@@ -26,39 +26,35 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <table class="table border">
+                                   
+                                    <table class="table table-bordered">
                                         <thead>
-                                            <tr>
-                                                <th scope="col">SL</th>
-                                                <th scope="col">Unit Range</th>
-                                                <th scope="col">Action</th>
-                                            </tr>
+                                        <tr>
+
+                                           <th scope="col">SL</th>
+                                           <th scope="col">Unit Name</th>
+                                           <th scope="col">Action</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
+                                        @foreach($unit as $key=> $units)
                                             <tr>
-                                                <th scope="row">1</th>
-                                                <td><strong>Bangladesh</strong></td>
-                                                <td class="table-action">
-                                                    <a href="#"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
-                                                    <a href="#"> <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
+                                                <td>{{ $key+1 }}</td>
+                                                <td>{{ $units->unit_name }}</td>
+
+                                                <td>
+                                                    <a href="{{ route('unit.edit',$units->id) }}"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
+                                                    <a href="{{ route('unit.delete',$units->id) }}"method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
+
                                                 </td>
+
+
+
                                             </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td><strong>Projukti71</strong></td>
-                                                <td class="table-action">
-                                                    <a href="#"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
-                                                    <a href="#"> <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td><strong>Mark</strong></td>
-                                                <td class="table-action">
-                                                    <a href="#"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
-                                                    <a href="#"> <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
-                                                </td>
-                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -78,7 +74,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                         
+                    </div>
             </div>
         </div>
         @endsection

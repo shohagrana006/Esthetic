@@ -32,18 +32,11 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">All Purchage list here</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="example1" class="table table table-striped table-md example2">
-                            <thead>
-
-                            <tr>
-                                <th>SL</th>
+            <div class="col-xl 12">
+                <div class="to-do">
+                    <table  class="example2"style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                        <tbody><tr style="background: #232b55; color: white;">
+                            <th>SL</th>
                                 <th>Date</th>
                                 <th>Product Name </th>
                                 <th>Supplier</th>
@@ -54,40 +47,35 @@
                                 <th>Parchage_payable_amount</th>
                                 <td>Purchage_paid_amont</td>
                                 <th>Parchage_due_amount</th>
-                                <td>Product_description</td>
 
-                            </tr>
-                            </thead>
-                            @foreach ($purchases as $key=>$purchase)
+                            <th class="action-lists">Action</th>
+                        </tr>
+                        @foreach ($purchases as $key=>$purchase)
+                        <tbody>
+                        <tr>
+                            <td class="text-center" >{{$key+1}}</td>
+                            <td class="text-center">{{$purchase->purchase_date}}</td>
+                            <td class="text-center">{{$purchase->product->product_name }}</td>
+                            <td class="text-center">{{ $purchase->supplier->supplier_name }}</td>
+                            <td class="text-center">{{ $purchase->warehouse->warehouse_name}}</td>
+                            <td class="text-center" >{{$purchase->branch->branch_name}}</td>
+                            <td class="text-center">{{$purchase->purchage_quantity}}</td>
+                            <td class="text-center">{{$purchase->purchage_unit_price }}</td>
+                            <td class="text-center">{{ $purchase->parchage_payable_amount }}</td>
+                            <td class="text-center">{{ $purchase->purchage_paid_amont}}</td>
+                            <td class="text-center">{{$purchase->parchage_due_amount }}</td>
+                            <td class="text-center">
+                                <a href="{{ route('purchage.edit',$purchase->id) }}"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
+                                <a href="{{ route('purchage.delete',$purchase->id) }} " id="delete"> <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
+                            </td>
+                        </tr>
 
-
-                            <tbody>
-                                <tr>
-                                    <td class="text-center" >{{$key+1}}</td>
-                                    <td class="text-center">{{$purchase->purchase_date}}</td>
-                                    <td class="text-center">{{$purchase->product->product_name }}</td>
-                                    <td class="text-center">{{ $purchase->supplier->supplier_name }}</td>
-                                    <td class="text-center">{{ $purchase->warehouse->warehouse_name}}</td>
-                                    <td class="text-center" >{{$purchase->branch->branch_name}}</td>
-                                    <td class="text-center">{{$purchase->purchage_quantity}}</td>
-                                    <td class="text-center">{{$purchase->purchage_unit_price }}</td>
-                                    <td class="text-center">{{ $purchase->parchage_payable_amount }}</td>
-                                    <td class="text-center">{{ $purchase->purchage_paid_amont}}</td>
-                                    <td class="text-center">{{$purchase->parchage_due_amount }}</td>
-                                    <td class="text-center">{{ $purchase->product_description }}</td>
-
-                                    <td class="text-center">
-                                        <a href="{{ route('purchage.edit',$purchase->id) }}"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
-                                        <a href="{{ route('purchage.delete',$purchase->id) }} " id="delete"> <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                            @endforeach
-                        </table>
-                    </div>
+                    </tbody>
+                    @endforeach
+                </table>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
