@@ -1,36 +1,5 @@
 @extends('admin.master')
 @section('content')
-      {{--  <div class="pos-specing">
-        <div class="brand-area unit-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="page-title">
-                            <h2>Add product <span>Add</span></h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-10 offset-xl-1 col-md-10 offset-md-1 sectionBg">
-                        <div class="addButton">
-                            <button><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
-                        </div>
-                        <div class="row mt-3 save-form-border ">
-                            <div class="col-md-6 col-sm-6">
-                                <form action="">
-                                    <label for=""><h5>Product Name</h5></label>
-                                    <input type="text" class="form-control" placeholder="Business Name">
-                                    <button><strong>Save</strong></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-     </div>  --}}
-
-
      <div class="main_container" id="main">
         <section class="purchase-sec mt-3">
             <div class="container">
@@ -38,17 +7,6 @@
                 <hr>
                 <div class="row">
                     <div class="col-xl-12">
-                        {{--  <form action="#">  --}}
-                            {{--  <form action="{{ isset($product) ? route('product.update',$product->id) : route('product.store') }}"
-                                method="Post" enctype="multipart/form-data">
-                              @csrf
-                              @if (isset($product->id))
-                                  @method('PUT')
-                              @endif  --}}
-                            {{--  <a href="" class="btn-purchase"><i class="far fa-plus-circle"></i> All Products</a>
-                            <a href="" class="btn-purchase"><i class="far fa-plus-circle"></i> Add Product</a>  --}}
-                            {{--  <hr>  --}}
-
                             @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -85,10 +43,7 @@
                                     <!-- Price Rate section -->
                                     <div class="dropdown">
                                         <label>Business & Location</label>
-                                        {{-- <input type="text" id="bnl" placeholder="Enter Shop Name"> --}}
                                         <select name="branch_id">
-                                            {{-- <option value="1">Dhaka</option>
-                                            <option value="2">Uttara</option> --}}
                                             @foreach($branch as $branches)
                                                 <option value="{{ $branches->id }}">
                                                 {{ $branches->branch_name }}</option>
@@ -99,11 +54,10 @@
                                     <div class="purchase-status dropdown">
                                         <label>Applicable Tax</label>
                                         <select name="product_applicable_tax">
-                                            <option value="1">None</option>
+                                            <option value="0">None</option>
                                             <option value="1">5%</option>
                                             <option value="2">10%</option>
                                             <option value="3">20%</option>
-                                            <option value="4">Custom</option>
                                         </select>
                                     </div>
 
@@ -151,6 +105,7 @@
                                     <div class="dropdown">
                                         <label>Selling Tax</label>
                                         <select name="product_selling_tax" >
+                                            <option value="1">None</option>
                                             <option value="10">10%</option>
                                             <option value="15">15%</option>
                                             <option value="5">5%</option>
@@ -173,10 +128,9 @@
 
                                 <div class="col-xl-4 col-lg-4 col-md-6" id="right-col">
                                     <!-- Barcode section -->
-                                    {{-- <div class="box"> --}}
+                                    
                                         <div class="purchase-status dropdown">
                                         <label>Barcode Type</label>
-                                        {{-- <input type="text" id="barcode" name="barcode"> --}}
                                         <select name="barcode">
                                             <option value="Number">Number</option>
                                             <option value="3">3</option>
@@ -201,11 +155,11 @@
 
                                     
 
-                                    <!-- Expiring Date section -->
+                                    {{-- <!-- Expiring Date section -->
                                     <div class="purchase-date box-2">
                                         <label>Expiring Date</label>
                                         <input type="date" id="expired" name="expiry_date" value=""  min="2018-01-01" max="2050-12-31">
-                                    </div>
+                                    </div> --}}
                                     <!-- Supplier Section -->
                                     <div class="business-location dropdown">
                                         <label>Quantity</label>
@@ -215,21 +169,21 @@
                                         <label>Selling price</label>
                                         <input type="text" class="form-control" name="seling_price" placeholder="Selling price">
                                     </div>
+
+                                    <div class="business-location dropdown">
+                                        <label>Discound price</label>
+                                        <input type="text" class="form-control" name="discount" placeholder="Discound price">
+                                    </div>
                                    
                                 </div>
                                 <!-- right-col Ends -->
-                                <div class="col-xl-4" id="left-side">
-                                    <label>Discound price</label>
-                                    <input type="text" class="form-control" name="discount" placeholder="Discound price">
-                                </div>
+                                
                             </div>
 
                             <div class="row">
                                 <div class="col-xl-4" id="left-side">
                                     <div class="attach-filed box-2">
                                         <label>Product Image</label>
-
-                                        {{-- <input type="file" name="image" class="form-control" placeholder="image"> --}}
                                         <input type="file" id="attach"name="image" >
                                         <p>Max size 25MB (pdf,csv,doc,jpeg,png)</p>
 

@@ -123,6 +123,7 @@
                                                 <td>{{ $products->quantity }}</td>
                                                 <td>{{ $products->seling_price}}</td>
                                                 <td>{{ $products->discount}}</td>
+
                                                 {{-- <td>{{ $products->image }}</td> --}}
 
                                                 <td>

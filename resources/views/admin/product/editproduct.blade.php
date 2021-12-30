@@ -58,11 +58,31 @@
                                     <!-- Applicable tax Section -->
                                     <div class="purchase-status dropdown">
                                         <label>Applicable Tax</label>
-                                        <select name="product_applicable_tax" value="{{ $product->product_applicable_tax }}" >
-                                            <option value="0">None</option>
-                                            <option value="5">5%</option>
-                                            <option value="10">10%</option>
-                                            <option value="20">20%</option>
+                                        <select name="product_applicable_tax"  >
+                                            <option value="0" 
+                                            @isset($product)
+                                            {{ $product->product_applicable_tax == 0 ? 'selected':''}}  
+                                            @endisset
+                                            >None</option>
+
+                                            <option value="5"
+                                            @isset($product)
+                                            {{ $product->product_applicable_tax == 5 ? 'selected':''}}  
+                                            @endisset
+                                            >5%</option>
+
+                                            <option value="10"
+                                            @isset($product)
+                                            {{ $product->product_applicable_tax == 10 ? 'selected':''}}  
+                                            @endisset
+                                            >10%</option>
+
+                                            <option value="20"
+                                            @isset($product)
+                                            {{ $product->product_applicable_tax == 20 ? 'selected':''}}  
+                                            @endisset
+                                            >20%</option>
+                                            
                                         </select>
                                     </div>
 
@@ -137,10 +157,10 @@
                                         <label>Barcode Type</label>
                                         <select name="barcode"value="{{ $product->barcode }}">
                                             <option value="Number">Number</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="sgsgs">sgsgs</option>
-                                            <option value="sfsf">sfsf</option>
+                                            <option value="2">3</option>
+                                            <option value="3">4</option>
+                                            <option value="4">sgsgs</option>
+                                            <option value="5">sfsf</option>
                                         </select>
                                     </div>
 
@@ -159,11 +179,12 @@
 
                                     
 
-                                    <!-- Expiring Date section -->
+                                    {{-- <!-- Expiring Date section -->
                                     <div class="purchase-date box-2">
                                         <label>Expiring Date</label>
                                         <input type="date" id="expired" name="expiry_date" value=""  min="2018-01-01" max="2050-12-31" value="{{$product->expiry_date}}">
-                                    </div>
+                                    </div> --}}
+
                                     <!-- Supplier Section -->
                                     <div class="business-location dropdown">
                                         <label>Quantity</label>
@@ -173,13 +194,15 @@
                                         <label>Selling price</label>
                                         <input type="text" class="form-control" name="seling_price" value="{{ $product->seling_price }}">
                                     </div>
+
+                                    <div class="business-location dropdown">
+                                        <label>Discound price</label>
+                                        <input type="text" class="form-control" name="discount" value="{{$product->discount }}">
+                                    </div>
                                    
                                 </div>
                                 <!-- right-col Ends -->
-                                <div class="col-xl-4" id="left-side">
-                                    <label>Discound price</label>
-                                    <input type="text" class="form-control" name="discount" value="{{$product->discount }}">
-                                </div>
+                               
                             </div>
 
                             <div class="row">
@@ -196,8 +219,8 @@
                                 
                             </div>
                             <!-- Purchase Submit Button -->
-                            {{-- <button class="btn-purchase-submit" id="add-task">Submit</button> --}}
-                            <button><strong>update</strong></button>
+                            <button class="btn-purchase-submit" id="add-task">update </button>
+                            {{-- <button><strong>update</strong></button> --}}
 
                         </form>
                     </div>
