@@ -40,7 +40,7 @@ class CreateProductsTable extends Migration
             $table->string('product_name');
             $table->tinyInteger('barcode');
             $table->tinyInteger('product_status')->default('1');
-            $table->tinyInteger('product_applicable_tax');
+            $table->tinyInteger('product_applicable_tax')->nullable();
             $table->tinyInteger('product_selling_tax')->nullable();
             $table->double('quantity')->default('0');
             $table->double('seling_price')->default('0');

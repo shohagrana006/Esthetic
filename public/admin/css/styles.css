@@ -471,7 +471,7 @@ h6 {
 }
 
 
-/* 
+/*
 .card-count {
     text-align: center;
     position: relative;
@@ -481,7 +481,7 @@ h6 {
 } */
 
 
-/* 
+/*
 .single-card {
     background: #222b55;
     border-radius: 5px;
@@ -506,7 +506,7 @@ h6 {
 }
 
 
-/* 
+/*
 .card-icon {
     width: 30%;
     background: #fff;
@@ -517,7 +517,7 @@ h6 {
 } */
 
 
-/* 
+/*
 .card-icon {
     width: 30%;
     background: #fff;
@@ -526,7 +526,7 @@ h6 {
 } */
 
 
-/* 
+/*
 .card-icon i {
     color: #000;
     font-size: 20px;
@@ -537,7 +537,7 @@ h6 {
  */
 
 
-/* 
+/*
 .card-icon i {
     color: #000;
     font-size: 25px;
@@ -812,14 +812,14 @@ hr {
 }
 
 .unit-area form button {
-    position: absolute;
+    /* position: absolute; */
     right: 0;
     top: 32px;
     background: #232B55;
     border: none;
     color: #fff;
     padding: 8.5px;
-    border-radius: 0 5px 5px 0;
+    border-radius: 5px;
 }
 
 .unit-area form input {
@@ -1671,3 +1671,11 @@ table .action-lists {
 #dropdownMenuButton1 {
     color: #000;
 }
+.example{
+    display: block;
+    overflow-x: auto;
+   white-space: nowrap;
+
+}
+
+

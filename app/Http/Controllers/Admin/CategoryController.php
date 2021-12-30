@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -11,7 +12,13 @@ class CategoryController extends Controller
     public function index()
     {
         $category=Category::all();
-        return response()->json($category);
+        return view('admin.category.category', compact('category'));
+
+    }
+
+    public function create()
+    {
+        return view('admin.category.add');
     }
 
     public function store(Request $request)
@@ -21,7 +28,8 @@ class CategoryController extends Controller
 
         ]);
         if ($validator->fails()) {
-            return $this->RespondWithEorror('validation category error ', $validator->errors(), 422);
+            return redirect()->route('category.create')->withErrors($validator)->withInput();
+
         }
         try {
             $data = Category::create(array_merge(
@@ -30,16 +38,19 @@ class CategoryController extends Controller
                     'category_slug' => Str::slug($request->category_name),
                 ]
             ));
-            return $this->RespondWithSuccess('category  successful', $data, 200);
+            $this->RespondWithSuccess('category created successful');
+            return redirect()-> route('category.index');
         } catch (Exception $e) {
-            return $this->RespondWithEorror('category not successful  ', $e->getMessage(), 400);
+            $this->RespondWithEorror('category created not successful  ', $e->getMessage());
+            return redirect()-> route('category.create');
         }
 
     }
     public function edit($id)
     {
-        $data = Category::find($id);
-        return response()->json($data);
+        $category = Category::find($id);
+        return view('admin.category.categoryedit',compact('category'));
+
     }
     public function update(Request $request, $id)
     {
@@ -48,7 +59,8 @@ class CategoryController extends Controller
 
         ]);
         if ($validator->fails()) {
-            return $this->RespondWithEorror('validation category error ', $validator->errors(), 422);
+            $this->RespondWithEorror('category validation error ', $validator->errors());
+            return redirect()->back();
         }
         try {
             $data = Category::find($id)->update(array_merge(
@@ -57,18 +69,18 @@ class CategoryController extends Controller
                     'category_slug' => Str::slug($request->category_name),
                 ]
             ));
-            return $this->RespondWithSuccess('category update successful', $data, 200);
+            $this->RespondWithSuccess('category update successful');
+            return redirect()-> route('category.index');
         } catch (Exception $e) {
-            return $this->RespondWithEorror('category update not successful  ', $e->getMessage(), 400);
+            $this->RespondWithEorror('category update not successful  ', $e->getMessage());
+            return redirect()->back();
         }
     }
     public function destroy($id)
     {
         Category::destroy($id);
-        return response()->json([
-            'success' => true,
-            'message' => 'Category  Deleted Successful'
-        ]);
+        $this->RespondWithSuccess('category delete  successful');
+        return redirect()->back();
 
     }
 }

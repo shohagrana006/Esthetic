@@ -86,7 +86,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('unit') }}" class="nav-link">
+                            <a href="{{ route('unit.index') }}" class="nav-link">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>
                                     Unit
@@ -94,7 +94,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('addunit') }}" class="nav-link">
+                            <a href="{{ route('unit.create') }}" class="nav-link">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>
                                     Add Unit
@@ -113,13 +113,14 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('warehouse') }}" class="nav-link">
+                            <a href="{{ route('warehouse.index') }}" class="nav-link">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Warehouse</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('addwarehouse') }}" class="nav-link">
+
+                            <a href="{{ route('warehouse.create') }}" class="nav-link">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Add Warehouse</p>
                             </a>
@@ -137,13 +138,14 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('category') }}" class="nav-link">
+
+                            <a href="{{ route('category.index') }}" class="nav-link">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Categories</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('addcategory') }}" class="nav-link">
+                            <a href="{{ route('category.create') }}" class="nav-link">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Add Category</p>
                             </a>
@@ -160,13 +162,14 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('subcat') }}" class="nav-link">
+
+                            <a href="{{ route('subcategory.index') }}" class="nav-link">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Sub Categories</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('addsubcat') }}" class="nav-link">
+                            <a href="{{ route('subcategory.create') }}" class="nav-link">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Add Sub Category</p>
                             </a>
@@ -183,13 +186,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('product') }}" class="nav-link">
+                            <a href="{{ route('product.index') }}" class="nav-link">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Products</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('addproduct') }}" class="nav-link">
+                            <a href="{{ route('product.create') }}" class="nav-link">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Add Product</p>
                             </a>
