@@ -131,7 +131,7 @@ h6 {
   margin: 0;
   width: 100%;
   transition: all 0.3s ease;
-  margin-top: 30px;
+  /* margin-top: 30px; */
   display: block;
   position: relative;
 }
@@ -1552,7 +1552,9 @@ table .action-lists {
 .content-header.pos-manage-1 {
   background: white;
 }
-
+.log-reg-page{
+  margin-left: -250px;
+}
 .single-pos-mange-left.width-percent input {
   padding: 5px;
   position: absolute;

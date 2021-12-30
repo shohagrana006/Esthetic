@@ -1,6 +1,7 @@
+
 @auth
 
-@endauth
+
 
 <aside class="main-sidebar elevation-4" style="background: #232b55;">
     <ul style="padding: 0; margin: 0;">
@@ -339,3 +340,4 @@
     </div>
     <!-- /.sidebar -->
 </aside>
+@endauth
