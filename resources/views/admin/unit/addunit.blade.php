@@ -1,4 +1,5 @@
 @extends('admin.master')
+
 @section('content')
       <div class="pos-specing">
                         <div class="brand-area unit-area">

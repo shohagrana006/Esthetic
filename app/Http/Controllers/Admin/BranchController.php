@@ -13,8 +13,11 @@ class BranchController extends Controller
     public function index()
     {
         $branchs = Branch::orderBy('id', 'desc')->get();
-        return view();
+        return view('admin.branch.index',compact('branchs'));
 
+    }
+    public function create(){
+        return view('admin.branch.form');
     }
 
     public function store(Request $request)
@@ -27,74 +30,66 @@ class BranchController extends Controller
             $input['branch_slug'] = null;
             $input['branch_slug'] = Str::slug($request->branch_name);
             Branch::create($input);
-            return $this->RespondWithSuccess('branch  successful');
+            $this->RespondWithSuccess('branch  successful');
+            return redirect()->route('branch.index');
+
         } catch (Exception $e) {
-            return $this->RespondWithEorror(
+             $this->RespondWithEorror(
                 'branch not successful  ',
                 $e->getMessage(),
             );
+            return redirect()->route('branch.index');
         }
     }
 
-    public function edit($branch_slug)
+    public function edit($id)
     {
-        $data = Branch::Where('branch_slug', $branch_slug)->get();
-        return view();
+        $data = Branch::find( $id);
+        return view('admin.branch.form',compact('data'));
 
     }
 
-    public function update(Request $request, $branch_slug)
+    public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'branch_name' => 'required',
         ]);
         if ($validator->fails()) {
-            return $this->RespondWithEorror(
-                'validation branch error ',
-                $validator->errors(),
-                422
-            );
+            return redirect()->route('branch.create')->withErrors($validator)
+            ->withInput();
         }
         try {
-            $data = Branch::Where('branch_slug', $branch_slug)->update(
+            $data = Branch::find($id)->update(
                 array_merge($request->except('branch_slug'), [
                     'branch_slug' => Str::slug($request->branch_name),
                 ])
             );
 
-            return $this->RespondWithSuccess(
+          $this->RespondWithSuccess(
                 'Branch Update successful',
-                $data,
-                200
+
             );
+            return redirect()->route('branch.index');
         } catch (Exception $e) {
-            return $this->RespondWithEorror(
+             $this->RespondWithEorror(
                 'Branch update not successful  ',
-                $e->getMessage(),
-                400
+                $e->getMessage()
             );
+            return redirect()->route('branch.index');
         }
     }
 
-    public function destroy($branch_slug)
+    public function destroy($id)
     {
-        $data = Branch::Where('branch_slug', $branch_slug)->delete();
+        $data = Branch::Where('id', $id)->delete();
         if ($data) {
-            return response()->json(
-                [
-                    'success' => true,
-                    'message' => ' Br  Deleted Successful',
-                ],
-                200
-            );
+            $this->RespondWithSuccess(' Branch  Deleted Successful');
+            return redirect()->route('branch.index');
         } else {
-            return response()->json(
-                [
-                    'error' => true,
-                    'message' => ' Brand not Deleted Successful',
-                ],
-                200
-            );
+
+                $this->RespondWithEorror(' Branch not Deleted Successful');
+                return redirect()->route('branch.index');
+
         }
     }
 }

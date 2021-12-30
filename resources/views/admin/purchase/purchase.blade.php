@@ -1,88 +1,114 @@
 @extends('admin.master')
+@section('title')
+   Purchage
+@endsection
+@push('css')
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('public/admin/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('public/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('public/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+     @endpush
+      <!-- Content Header (Page header) -->
 @section('content')
-       <section class="lists white-bg">
-                        <div class="container">
-                            <h1 style="color: rgb(0, 0, 0); margin-bottom: 10px;">Lists</h1>
-                            <hr>
-                            <div class="row align-items-center list-table" style="margin-left: 1%;">
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="single-filter">
-                                        <div>
-                                            <!-- <label><i class="fas fa-grip-vertical"></i> Filter</label><br> -->
-                                            <select class="btn-filter">
-                                        <option value="1">Today</option>
-                                        <option value="2">Yesterday</option>
-                                        <option value="3">Last 7 Days</option>
-                                        <option value="4">Last 15 Days</option>
-                                        <option value="5">This Year</option>
-                                        <option value="6">Last Year</option>
-                                        <option value="7">Custom Range</option>
-                                    </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="single-filter text-center">
-                                        <input class="btn-import-list" type="button" value="Import">
-                                        <input class="btn-export-list" type="button" value="Export">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="list-search" style="width: 100%;">
-                                        <form class="searchbar-list" action="#">
-                                            <input class="srchbar-list" type="search" placeholder="search">
-                                            <input class="btn-srch-list" type="button" value="search">
-                                        </form>
-                                    </div>
-                                </div>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Purchage</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <a href="{{ route('purchage.create') }}" class="btn btn-primary">
+                        + AddPurchage
+                    </a>
 
-                            </div>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl 12">
+                <div class="to-do">
+                    <table  class="example2"style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                        <tbody><tr style="background: #232b55; color: white;">
+                            <th>SL</th>
+                                <th>Date</th>
+                                <th>Product Name </th>
+                                <th>Supplier</th>
+                                <th>Warehouse</th>
+                                <th>Branch</th>
+                                <th>Purchage_quantity</th>
+                                <th>Purchage_unit_price</th>
+                                <th>Parchage_payable_amount</th>
+                                <td>Purchage_paid_amont</td>
+                                <th>Parchage_due_amount</th>
 
-                            <div class="row">
-                                <div class="col-xl 12">
-                                    <div class="container">
-                                        <div class="to-do">
-                                            <table style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                                                <tbody><tr style="background: #232b55; color: white;">
-                                                    <th>SL No.</th>
-                                                    <th>Product Name</th>
-                                                    <th>Invoice No.</th>
-                                                    <th>Quantity</th>
-                                                    <th>Payment Status</th>
-                                                    <th>Payment Method</th>
-                                                    <th class="action-lists">Action Buttons</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Maria Anders</td>
-                                                    <td>123123</td>
-                                                    <td>5</td>
-                                                    <td>paid</td>
-                                                    <td>Cash</td>
-                                                    <td>
-                                                        <a href="#"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
-                                                        <a href="#"> <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Maria Anders</td>
-                                                    <td>123131</td>
-                                                    <td>5</td>
-                                                    <td>Paid</td>
-                                                    <td>Cash</td>
-                                                    <td>
-                                                        <a href="#"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
-                                                        <a href="#"> <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
-                                                    </td>
-                                                </tr>
+                            <th class="action-lists">Action</th>
+                        </tr>
+                        @foreach ($purchases as $key=>$purchase)
+                        <tbody>
+                        <tr>
+                            <td class="text-center" >{{$key+1}}</td>
+                            <td class="text-center">{{$purchase->purchase_date}}</td>
+                            <td class="text-center">{{$purchase->product->product_name }}</td>
+                            <td class="text-center">{{ $purchase->supplier->supplier_name }}</td>
+                            <td class="text-center">{{ $purchase->warehouse->warehouse_name}}</td>
+                            <td class="text-center" >{{$purchase->branch->branch_name}}</td>
+                            <td class="text-center">{{$purchase->purchage_quantity}}</td>
+                            <td class="text-center">{{$purchase->purchage_unit_price }}</td>
+                            <td class="text-center">{{ $purchase->parchage_payable_amount }}</td>
+                            <td class="text-center">{{ $purchase->purchage_paid_amont}}</td>
+                            <td class="text-center">{{$purchase->parchage_due_amount }}</td>
+                            <td class="text-center">
+                                <a href="{{ route('purchage.edit',$purchase->id) }}"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
+                                <a href="{{ route('purchage.delete',$purchase->id) }} " id="delete"> <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
+                            </td>
+                        </tr>
 
-                                            </tbody></table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    </tbody>
+                    @endforeach
+                </table>
+                </div>
+            </div>
 
-                    </section>
-                    @endsection
+        </div>
+    </div>
+</section>
+@push('js')
+<script src="{{ asset('public/admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+ <script src="{{ asset('public/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('public/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('public/admin//plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('public/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('public/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('public/admin/plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('public/admin/plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('public/admin/plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('public/admin/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('public/admin/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('public/admin/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
+@endpush
+@endsection
+

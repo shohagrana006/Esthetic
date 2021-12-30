@@ -11,8 +11,8 @@ class SupplierController extends Controller
 {
     public function index()
     {
-        $customers = Supplier::orderBy('id', 'desc')->get();
-        return view('admin.supplier.supplier', compact('customers'));
+        $suppliers = Supplier::orderBy('id', 'desc')->get();
+        return view('admin.supplier.supplier', compact('suppliers'));
     }
 
     public function create()
@@ -28,14 +28,17 @@ class SupplierController extends Controller
             'supplier_phone_number' => 'unique:suppliers',
         ]);
         if ($validator->fails()) {
-            return  $validator->errors();
+            return redirect()
+                ->route('supplier.create')
+                ->withErrors($validator)
+                ->withInput();
         }
         try {
             Supplier::create($request->all());
             $this->RespondWithSuccess('Supplier  successful');
-            return redirect()->back();
+            return redirect()->route('supplier.index');
         } catch (Exception $e) {
-             $this->RespondWithEorror(
+            $this->RespondWithEorror(
                 'Supplier not successful',
                 $e->getMessage()
             );
@@ -45,7 +48,7 @@ class SupplierController extends Controller
     public function edit($id)
     {
         $data = Supplier::find($id);
-        return $data;
+        return view('admin.supplier.addsupplier', compact('data'));
     }
 
     public function update(Request $request, $id)
@@ -57,28 +60,32 @@ class SupplierController extends Controller
                 'unique:suppliers,supplier_phone_number,' . $id,
         ]);
         if ($validator->fails()) {
-           return  $validator->errors();
+            return redirect()
+                ->route('supplier.edit')
+                ->withErrors($validator)
+                ->withInput();
         }
         try {
-            Supplier::where('id', $id)->update($request->all());
-            return $this->RespondWithSuccess(
-                'supplier update successful'
-            );
+            Supplier::find($id)->update($request->all());
+            $this->RespondWithSuccess('supplier update successful');
+            return redirect()->route('supplier.index');
         } catch (Exception $e) {
             return $this->RespondWithEorror(
                 'supplier update not successful  ',
-                $e->getMessage(),
-
+                $e->getMessage()
             );
         }
     }
 
     public function destroy($id)
     {
-        Supplier::destroy($id);
-        return response()->json([
-            'success' => true,
-            'message' => ' Supplier Deleted Successful',
-        ]);
+        $data = Supplier::destroy($id);
+        if ($data) {
+            $this->RespondWithSuccess('supplier  Deleted Successful');
+            return redirect()->route('supplier.index');
+        } else {
+            $this->RespondWithEorror('supplier not Deleted Successful');
+            return redirect()->route('supplier.index');
+        }
     }
 }

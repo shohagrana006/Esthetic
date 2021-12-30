@@ -1,40 +1,76 @@
-@extends('admin.master')
-@section('content')
-      <div class="pos-specing">
-                        <div class="brand-area unit-area">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="page-title">
-                                            <h2>Supplier Name <span>Add</span></h2>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xl-10 offset-xl-1 col-md-10 offset-md-1 sectionBg">
-                                        <div class="addButton">
-                                            <button><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
-                                        </div>
-                                        <div class="row mt-3 save-form-border ">
-                                            <div class="col-md-6 col-sm-6">
-                                                <form action="{{ route('suppliers.store') }}" method="POST" >
-                                                    @csrf
-                                                    <label for=""><h5>Supplier Name</h5></label>
-                                                    
-                                                    <input type="text" class="form-control" name="supplier_name" class="form-control @error('supplier_name') is-invalid @enderror" name="supplier_name" value="{{ old('supplier_name') }}" placeholder="supplier Name"><br>
-                                                    <label for=""><h5>Supplier Email</h5></label>
-                                                    <input type="email" class="form-control" name="supplier_email" placeholder="supplier Email"><br>
-                                                    <label for=""><h5>Supplier Email</h5></label>
-                                                    <input type="text" class="form-control" name="supplier_phone_number" placeholder="supplier phone"><br>
-                                                    <label for=""><h5>Supplier Name</h5></label>
-                                                    <input type="text" class="form-control" name="supplier_about_info" placeholder="supplier address"><br>
-                                                   <br> <button><strong>Save</strong></button>
-                                                </form>
+                   @extends('admin.master')
+                      @section('content')
+                          <div class="pos-specing">
+                                            <div class="brand-area unit-area">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-10 offset-xl-1 col-md-10 offset-md-1 sectionBg">
+                                                            <h5 class="" >@if(@isset($data))Edit Branch @else Add New Branch @endif</h5>
+                                                                <div class="col-md-6 col-sm-6">
+                                                                 @if ($errors->any())
+                                                                   <div class="alert alert-danger">
+                                                                     <ul>
+                                                                        @foreach ($errors->all() as $error)
+                                                                            <li>{{ $error }}</li>
+                                                                        @endforeach
+                                                                      </ul>
+                                                                   </div>
+                                                                   @endif
+                                                                   <div class="row mt-3 save-form-border ">
+                                                                  <form action="{{ isset($data) ? route('supplier.update',$data->id) : route('suppliers.store') }}"
+                                                                        method="Post" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        <div class="form-group">
+                                                                            <label for=""><h5>Supplier Name</h5></label>
+                                                                            <input type="text" class="form-control" name="supplier_name"  placeholder="supplier Name" value="{{ $data->supplier_name ?? ''  }}">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for=""><h5>Supplier Email</h5></label>
+                                                                            <input type="text" class="form-control" name="supplier_email"  placeholder="supplier email"  value="{{ $data->supplier_email ?? ''  }}">
+
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for=""><h5>Supplier Phone Number</h5></label>
+                                                                            <input type="text" class="form-control" name="supplier_phone_number"  placeholder="supplier Phone"  value="{{ $data->supplier_phone_number ?? ''  }}">
+
+                                                                        </div>
+                                                                        <div class="form-group ">
+                                                                            <label for=""><h5>Supplier Bbout Information</h5></label>
+
+                                                                            <textarea   name="supplier_about_info"  >
+                                                                                {{ $data->supplier_about_info ?? ''  }}
+                                                                            </textarea>
+
+
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                            <a href="{{ route('supplier.index') }}" class="btn btn-primary">
+                                                                                 Back
+                                                                            </a>
+                                                                            <button type="Submit" class="btn btn-primary">
+                                                                                @isset($data)
+                                                                                    <i class="fas fa-arrow-circle-up"></i>
+                                                                                    <span>Update</span>
+                                                                                @else
+                                                                                    <i class="fas fa-plus-circle"></i>
+                                                                                    <span>Create</span>
+                                                                                @endisset
+                                                                            </button>
+                                                                        </div>
+
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endsection
+                                        @endsection
+

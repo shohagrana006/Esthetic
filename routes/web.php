@@ -29,12 +29,24 @@ Route::group(
         Route::post('customer/update/{id}', 'CustomerController@update');
         Route::get('customer/delete/{id}', 'CustomerController@destroy');
         //suppliers route
-        Route::get('supplier/index', 'SupplierController@index')->name('supplier.index');
-        Route::get('supplier/create', 'SupplierController@create')->name('supplier.create');
-        Route::post('supplier/store', 'SupplierController@store')->name('suppliers.store');
-        Route::get('supplier/edit/{id}', 'SupplierController@edit');
-        Route::post('supplier/update/{id}', 'SupplierController@update');
-        Route::get('supplier/delete/{id}', 'SupplierController@destroy');
+        Route::get('supplier/index', 'SupplierController@index')->name(
+            'supplier.index'
+        );
+        Route::get('supplier/create', 'SupplierController@create')->name(
+            'supplier.create'
+        );
+        Route::post('supplier/store', 'SupplierController@store')->name(
+            'suppliers.store'
+        );
+        Route::get('supplier/edit/{id}', 'SupplierController@edit')->name(
+            'supplier.edit'
+        );
+        Route::post('supplier/update/{id}', 'SupplierController@update')->name(
+            'supplier.update'
+        );
+        Route::get('supplier/delete/{id}', 'SupplierController@destroy')->name(
+            'supplier.dalete'
+        );
         //unit route
         Route::get('unit/index', 'UnitController@index')->name('unit.index');
         Route::get('unit/create', 'UnitController@create')->name('unit.create');
@@ -64,17 +76,41 @@ Route::group(
         Route::post('subcategory/update/{id}','SubCategoryController@update')->name('subcategory.update');
         Route::get('subcategory/delete/{sub_category_slug}','SubCategoryController@destroy')->name('subcategory.delete');
         //brand route
-        Route::get('brand/index', 'BrandController@index');
-        Route::post('brand/store', 'BrandController@store');
-        Route::get('brand/edit/{brand_slug}', 'BrandController@edit');
-        Route::post('brand/update/{brand_slug}', 'BrandController@update');
-        Route::get('brand/delete/{id}', 'BrandController@destroy');
+        Route::get('brand/index', 'BrandController@index')->name('brand.index');
+        Route::get('brand/create', 'BrandController@create')->name(
+            'brand.create'
+        );
+        Route::post('brand/store', 'BrandController@store')->name(
+            'brand.store'
+        );
+        Route::get('brand/edit/{id}', 'BrandController@edit')->name(
+            'brand.edit'
+        );
+        Route::post('brand/update/{id}', 'BrandController@update')->name(
+            'brand.update'
+        );
+        Route::get('brand/delete/{id}', 'BrandController@destroy')->name(
+            'brand.delete'
+        );
         //branch route
-        Route::get('branch/index', 'BranchController@index');
-        Route::post('branch/store', 'BranchController@store');
-        Route::get('branch/edit/{branch_slug}', 'BranchController@edit');
-        Route::post('branch/update/{branch_slug}', 'BranchController@update');
-        Route::get('branch/delete/{id}', 'BranchController@destroy');
+        Route::get('branch/index', 'BranchController@index')->name(
+            'branch.index'
+        );
+        Route::get('branch/create', 'BranchController@create')->name(
+            'branch.create'
+        );
+        Route::post('branch/store', 'BranchController@store')->name(
+            'branch.store'
+        );
+        Route::get('branch/edit/{id}', 'BranchController@edit')->name(
+            'branch.edit'
+        );
+        Route::post('branch/update/{id}', 'BranchController@update')->name(
+            'branch.update'
+        );
+        Route::get('branch/delete/{id}', 'BranchController@destroy')->name(
+            'branch.delete'
+        );
         //product route
         Route::get('product/index', 'ProductController@index')->name('product.index');
         Route::get('product/create', 'ProductController@create')->name('product.create');
@@ -83,12 +119,13 @@ Route::group(
         Route::post('product/update/{id}', 'ProductController@update')->name('product.update');
         Route::get('product/delete/{id}', 'ProductController@destroy')->name('product.delete');
         //purchage route
-        Route::get('purchage/index', 'PurchageController@index');
-        Route::post('purchage/store', 'PurchageController@store');
-        Route::get('purchage/edit/{id}', 'PurchageController@edit');
-        Route::post('purchage/update/{id}', 'PurchageController@update');
-        Route::get('purchage/delete/{id}', 'PurchageController@destroy');
-        Route::get('purchage/pending', 'PurchageController@getPending');
+        Route::get('purchage/index', 'PurchageController@index')->name('purchage.index');
+        Route::get('purchage/create', 'PurchageController@create')->name('purchage.create');
+        Route::post('purchage/store', 'PurchageController@store')->name('purchage.store');
+        Route::get('purchage/edit/{id}', 'PurchageController@edit')->name('purchage.edit');
+        Route::post('purchage/update/{id}', 'PurchageController@update')->name('purchage.update');
+        Route::get('purchage/delete/{id}', 'PurchageController@destroy')->name('purchage.delete');
+        Route::get('purchage/pending', 'PurchageController@getPending')->name('purchage.pending');
         Route::post(
             'purchage/updatepending/{id}',
             'PurchageController@updatePurchaseStatus'
@@ -100,11 +137,12 @@ Route::group(
         Route::post('damage/update/{id}', 'DamageController@update');
         Route::get('damage/delete/{id}', 'DamageController@destroy');
         //expense route
-        Route::get('expense/index', 'ExpenseController@index');
-        Route::post('expense/store', 'ExpenseController@store');
-        Route::get('expense/edit/{id}', 'ExpenseController@edit');
-        Route::post('expense/update/{id}', 'ExpenseController@update');
-        Route::get('expense/delete/{id}', 'ExpenseController@destroy');
+        Route::get('expense/index', 'ExpenseController@index')->name('expense.index');
+        Route::get('expense/create', 'ExpenseController@create')->name('expense.create');
+        Route::post('expense/store', 'ExpenseController@store')->name('expense.store');
+        Route::get('expense/edit/{id}', 'ExpenseController@edit')->name('expense.edit');
+        Route::post('expense/update/{id}', 'ExpenseController@update')->name('expense.edit');
+        Route::get('expense/delete/{id}', 'ExpenseController@destroy')->name('expense.delete');
 
         Route::get('expense/today', 'ExpenseController@today_expence');
         Route::get(

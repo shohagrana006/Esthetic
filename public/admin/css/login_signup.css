@@ -49,9 +49,9 @@
     margin-bottom: 0.5em;
   }
   
-  .log-reg-page  .bg--primary {
+  /* .log-reg-page  .bg--primary {
     background-color: #3c8ac9;
-  }
+  } */
   
   .log-reg-page  .bg--secondary {
     background-color: #232b55;
@@ -90,14 +90,11 @@
   }
   
   .log-reg-page  .container {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    margin-top: 100px;
   }
   
   .log-reg-page .login__card {
-    height: 35em;
-    width: 22em;
+   padding: 100px 40px;
     box-shadow: rgba(65, 60, 105, 0.5) 0 0 1em;
   }
   

@@ -1,4 +1,7 @@
 @extends('admin.master')
+@section('title')
+   Brand
+@endsection
 @section('content')
       <div class="pos-specing">
                         <div class="brand-area unit-area">
@@ -23,7 +26,7 @@
                                                     <button><strong>Save</strong></button>
                                                 </form>
                                             </div>
-                                        </div>                                                                       
+                                        </div>
                                     </div>
                                 </div>
                             </div>
