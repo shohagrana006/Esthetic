@@ -12,12 +12,12 @@ class BrandController extends Controller
 {
     public function index()
     {
-        $customer = Brand::orderBy('id', 'desc')->get();
-        return $this->RespondWithSuccess(
-            'All Brand view  successful',
-            $customer,
-            200
-        );
+        $brands = Brand::orderBy('id', 'desc')->get();
+        return view('admin.brand.brand', compact('brands'));
+    }
+    public function create()
+    {
+        return view('admin.brand.addbrand');
     }
 
     public function store(Request $request)
@@ -26,11 +26,10 @@ class BrandController extends Controller
             'brand_name' => 'required|unique:brands',
         ]);
         if ($validator->fails()) {
-            return $this->RespondWithEorror(
-                'validation brand error ',
-                $validator->errors(),
-                422
-            );
+            return redirect()
+                ->route('brand.create')
+                ->withErrors($validator)
+                ->withInput();
         }
         try {
             $input = $request->all();
@@ -49,33 +48,22 @@ class BrandController extends Controller
                 );
             }
 
-            $data = Brand::create($input);
-            return $this->RespondWithSuccess('brand  successful', $data, 200);
+            Brand::create($input);
+            $this->RespondWithSuccess('brand  successful');
+            return redirect()->route('brand.index');
         } catch (Exception $e) {
-            return $this->RespondWithEorror(
+            $this->RespondWithEorror(
                 'brand not successful  ',
-                $e->getMessage(),
-                400
+                $e->getMessage()
             );
+            return redirect()->route('brand.index');
         }
     }
 
-    public function edit($brand_slug)
+    public function edit($id)
     {
-        $data = Brand::Where('brand_slug', $brand_slug)->get();
-        if (!empty($data)) {
-            return $this->RespondWithSuccess(
-                'Brand edit successful',
-                $data,
-                200
-            );
-        } else {
-            return $this->RespondWithEorror(
-                'brand edit not successful  ',
-                $data,
-                400
-            );
-        }
+        $data = Brand::find($id);
+        return view('admin.brand.addbrand', compact('data'));
     }
 
     public function update(Request $request, $id)
@@ -84,11 +72,10 @@ class BrandController extends Controller
             'brand_name' => 'unique:brands,brand_name,' . $id,
         ]);
         if ($validator->fails()) {
-            return $this->RespondWithEorror(
-                'validation brand error ',
-                $validator->errors(),
-                422
-            );
+            return redirect()
+                ->route('brand.create')
+                ->withErrors($validator)
+                ->withInput();
         }
         try {
             $input = $request->all();
@@ -112,17 +99,14 @@ class BrandController extends Controller
 
             $data->update($input);
 
-            return $this->RespondWithSuccess(
-                'Brand Update successful',
-                $data,
-                200
-            );
+            $this->RespondWithSuccess('Brand Update successful');
+            return redirect()->route('brand.index');
         } catch (Exception $e) {
-            return $this->RespondWithEorror(
+            $this->RespondWithEorror(
                 'Brand update not successful  ',
-                $e->getMessage(),
-                400
+                $e->getMessage()
             );
+            return redirect()->route('brand.index');
         }
     }
 
@@ -134,21 +118,11 @@ class BrandController extends Controller
         }
         $data = Brand::destroy($id);
         if ($data) {
-            return response()->json(
-                [
-                    'success' => true,
-                    'message' => ' Brand  Deleted Successful',
-                ],
-                200
-            );
+            $this->RespondWithSuccess(' Brand  Deleted Successful');
+            return redirect()->route('brand.index');
         } else {
-            return response()->json(
-                [
-                    'error' => true,
-                    'message' => ' Brand not Deleted Successful',
-                ],
-                200
-            );
+            $this->RespondWithEorror(' Brand not Deleted Successful');
+            return redirect()->route('brand.index');
         }
     }
 }

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
 use App\Models\Product;
 use App\Models\Purchage;
+use App\Models\Supplier;
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,16 +15,27 @@ class PurchageController extends Controller
 {
     public function index()
     {
-        $product = Purchage::with('supplier', 'warehouse', 'product', 'branch')
+        $purchases = Purchage::with(
+            'supplier',
+            'warehouse',
+            'product',
+            'branch'
+        )
             ->orderBy('id', 'desc')
             ->get();
-        return $this->RespondWithSuccess(
-            'All Purchage view  successful',
-            $product,
-            200
+        return view('admin.purchase.purchase', compact('purchases'));
+    }
+    public function create()
+    {
+        $suppliers = Supplier::all();
+        $warehouses = Warehouse::all();
+        $products = Product::all();
+        $branchs = Branch::all();
+        return view(
+            'admin.purchase.addpurchase',
+            compact('suppliers', 'warehouses', 'products', 'branchs')
         );
     }
-
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [

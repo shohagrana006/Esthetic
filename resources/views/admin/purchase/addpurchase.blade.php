@@ -6,29 +6,39 @@
                             <hr>
                             <div class="row">
                                 <div class="col-xl-12">
-                                    <form action="#">
-                                        <a href="" class="btn-purchase"><i class="far fa-plus-circle" aria-hidden="true"></i> Add Purchase</a>
-
+                                    <form action="{{ isset($data) ? route('purchage.update',$data->id) : route('purchage.store') }}"
+                                        method="Post" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-xl-4 col-lg-4 col-md-4" id="left-col">
                                                 <!-- Supplier Buttons -->
-
-
                                                 <div class="box-3">
                                                     <label>Supplier</label>
-                                                    <select name="supplier" id="supplier">
-                                                <option value="1">Supplier-1</option>
-                                                <option value="2">Supplier-2</option>
-                                                <option value="3">Supplier-3</option>
-                                            </select>
-                                                    <a href="" class="btn-supplier"><i class="far fa-plus-circle" aria-hidden="true"></i></a>
+                                                    <select  name="supplier_id" required="" id="supplier">
+                                                        @foreach($suppliers as $row)
+                                                            <option value="{{ $row->id }}"
+                                                                    @isset($data)
+                                                                    @if($row->id==$data->supplier_id)
+                                                                    selected=""
+                                                                @endif
+                                                                @endisset
+                                                            >
+                                                                {{ $row->supplier_name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <a href="{{ route('supplier.create') }}" class="btn-supplier"><i class="far fa-plus-circle" aria-hidden="true"></i></a>
+                                                </div>
+                                                 <!-- Quantity Button -->
+                                                 <div class="quantity box-2">
+                                                    <label>Quantity</label>
+                                                    <input type="number" placeholder="Select Quantity">
                                                 </div>
 
-                                                <!-- Address Button -->
+                                                {{-- <!-- Address Button -->
                                                 <div class="adress box">
                                                     <label>Address</label>
                                                     <input type="text" placeholder="Supplier Address">
-                                                </div>
+                                                </div> --}}
 
                                                 <!-- Price Rate section -->
                                                 <div class="rate box">
@@ -53,19 +63,27 @@
 
                                             <div class="col-xl-4 col-lg-4 col-md-4" id="middle-col">
                                                 <!-- Reference Buttons -->
-                                                <div class="refer box-2">
+                                                {{-- <div class="refer box-2">
                                                     <label>Reference NO.</label>
                                                     <input type="text" placeholder="Enter Referance Number">
-                                                </div>
+                                                </div> --}}
 
                                                 <!-- Product section -->
                                                 <div class="product dropdown">
-                                                    <label>Product/SKU</label>
-                                                    <select name="product/sku" id="product-sku">
-                                                <option value="1">Product item-1</option>
-                                                <option value="2">Product item-2</option>
-                                                <option value="3">Product item-3</option>
-                                            </select>
+                                                    <label>Product</label>
+                                                    <select  name="product_id" required=""  id="product-sku">
+                                                        @foreach($products as $row)
+                                                            <option value="{{ $row->id }}"
+                                                                    @isset($data)
+                                                                    @if($row->id==$data->product_id)
+                                                                    selected=""
+                                                                @endif
+                                                                @endisset
+                                                            >
+                                                                {{ $row->product_name}}</option>
+                                                        @endforeach
+                                                    </select>
+
                                                 </div>
 
                                                 <!-- Quantity Button -->
@@ -90,6 +108,18 @@
                                                 <!-- Warehouse Section -->
                                                 <div class="warehouse dropdown">
                                                     <label>Warehouse</label>
+                                                    <select  name="warehouse_id" required=""  id="warehouse">
+                                                        @foreach($warehouses as $row)
+                                                            <option value="{{ $row->id }}"
+                                                                    @isset($data)
+                                                                    @if($row->id==$data->warehouse_id)
+                                                                    selected=""
+                                                                @endif
+                                                                @endisset
+                                                            >
+                                                                {{ $row->warehouses_name}}</option>
+                                                        @endforeach
+                                                    </select>
                                                     <select name="Warehouse" id="warehouse">
                                                 <option value="1">Warehouse-1</option>
                                                 <option value="2">Warehouse-2</option>

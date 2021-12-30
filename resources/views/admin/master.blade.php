@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Esthetic</title>
+    <title>@yield('title') {{env('APP_NAME')}}</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="{{ asset('public') }}/admin/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('public') }}/admin/css/adminlte.min.css">
@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="{{ asset('public') }}/admin/css/daterangepicker.min.css">
     <link rel="stylesheet" href="{{ asset('public') }}/admin/css/dbadmin.css">
     <link rel="stylesheet" href="{{ asset('public') }}/admin/css/login_signup.css">
-
     <link rel="stylesheet" href="{{ asset('public') }}/admin/css/styles.css">
     <link rel="stylesheet" href="{{ asset('public') }}/admin/css/responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    @stack('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 
@@ -61,6 +61,7 @@
     <script src="{{ asset('public') }}/admin/js/dashboard.js"></script>
 
     <script src="{{ asset('public') }}/admin/js/main.js"></script>
+
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
@@ -112,8 +113,27 @@
 
         });
     </script>
-
-    {{-- <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script> --}}
+     <script src="{{ asset('public/admin/plugins/sweetalert/sweetalert.min.js') }}"></script>
+     <script>
+        $(document).on("click", "#delete", function(e){
+            e.preventDefault();
+            var link = $(this).attr("href");
+               swal({
+                 title: "Are you Want to delete?",
+                 text: "Once Delete, This will be Permanently Delete!",
+                 icon: "warning",
+                 buttons: true,
+                 dangerMode: true,
+               })
+               .then((willDelete) => {
+                 if (willDelete) {
+                      window.location.href = link;
+                 } else {
+                   swal("Safe Data!");
+                 }
+               });
+           });
+   </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     {!! Toastr::message() !!}
     <script>
@@ -126,6 +146,8 @@
             @endforeach
         @endif
     </script>
+
+    @stack('js')
 
 </body>
 
