@@ -1,32 +1,32 @@
 @extends('admin.master')
+@section('title')
+   Bussiness
+@endsection
+@push('css')
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('public/admin/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('public/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('public/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+     @endpush
 @section('content')
         <div class="pos-specing">
             <div class="brand-area unit-area">   
                     <div class="row">
                         <div class="col-xl-10 offset-xl-1 col-md-10 offset-md-1 sectionBg">
-                            
+                            <div class="addButton">
+                                <a href="{{ route('bussiness.create') }}" class="btn bg-success"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</a>
+                            </div>
                             <h3><strong> Business List</strong></h3>
                             <hr>
-                            <div class="row justify-content-between mb-3">
-                                <div class="col-xl-4 col-md-4 col-sm-6">
-                                    <div class="brand-show business-list-search">
-                                        <label for=""><h5 style="margin:0;">Show</h5></label>
-                                        <select name="" id="">
-                                    <option value="1" selected="">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                                    </div>
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
                                 </div>
-                                <div class="col-xl-4 col-md-4 col-sm-6">
-                                    <div class="list-search">
-                                        <input type="search" placeholder="Search Here..." id="">
-                                    </div>
-                                </div>
-                            </div>
+                            @endif           
                             <div class="row">
                                 <div class="col-md-12">
-                                    <table class="table border">
+                                    <table id="example1" class="table table table-striped table-md">
                                         <thead>
                                             <tr>
                                                 <th scope="col">SL</th>
@@ -34,31 +34,21 @@
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody>                                          
+                                            @foreach ($bussiness as $bussi)                                                                                         
                                             <tr>
-                                                <th scope="row">1</th>
-                                                <td><strong>Bangladesh</strong></td>
+                                                <th>{{ $loop->index +1 }}</th>
+                                                <td>{{ $bussi->bussiness_name }}</td>
                                                 <td class="table-action">
                                                     <a href="#"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
-                                                    <a href="#"> <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
+                                                    <a onclick="event.preventDefault();document.getElementById('bussi_dlt-{{ $bussi->id }}').submit();" href=""> <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td><strong>Projukti71</strong></td>
-                                                <td class="table-action">
-                                                    <a href="#"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
-                                                    <a href="#"> <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td><strong>Mark</strong></td>
-                                                <td class="table-action">
-                                                    <a href="#"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
-                                                    <a href="#"> <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
-                                                </td>
-                                            </tr>
+                                                <form id="bussi_dlt-{{ $bussi->id }}" action="{{ route('bussiness.destroy',$bussi->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                            </tr>  
+                                            @endforeach                                        
                                         </tbody>
                                     </table>
                                 </div>
@@ -81,4 +71,36 @@
                     </div>                         
             </div>
         </div>
+        @push('js')
+
+<script src="{{ asset('public/admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+ <script src="{{ asset('public/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('public/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('public/admin//plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('public/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('public/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('public/admin/plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('public/admin/plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('public/admin/plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('public/admin/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('public/admin/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('public/admin/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
+@endpush
         @endsection

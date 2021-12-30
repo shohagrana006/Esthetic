@@ -278,13 +278,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('business') }}" class="nav-link">
+                            <a href="{{ route('bussiness.index') }}" class="nav-link {{Route::is('bussiness.index') ? 'active' : ''}}">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Business</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('addbusiness') }}" class="nav-link">
+                            <a href="{{ route('bussiness.create') }}" class="nav-link {{Route::is('bussiness.create') ? 'active' : ''}}">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Add Business</p>
                             </a>

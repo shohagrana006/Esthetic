@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('title')
-   Brand
+   Bussiness
 @endsection
 @section('content')
       <div class="pos-specing">
@@ -16,16 +16,22 @@
                                 <div class="row">
                                     <div class="col-xl-10 offset-xl-1 col-md-10 offset-md-1 sectionBg">
                                         <div class="addButton">
-                                            <button><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
+                                            <a class="btn bg-success" href="{{ route('bussiness.index') }}"><i class="fas fa-long-arrow-alt-left"></i>Back</a>
                                         </div>
+                                        @error('bussiness_name')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                         <div class="row mt-3 save-form-border ">
                                             <div class="col-md-6 col-sm-6">
-                                                <form action="">
+                                                <form action="{{ route('bussiness.store') }}" method="POST">
+                                                    @csrf
                                                     <label for=""><h5>Business Name</h5></label>
-                                                    <input type="text" class="form-control" placeholder="Business Name">
-                                                    <button><strong>Save</strong></button>
+                                                    <input type="text" class="form-control" name="bussiness_name" placeholder="Business Name">
+                                                    <button class="btn mt-2" type="submit"><strong>Save</strong></button>
                                                 </form>
-                                            </div>
+                                            </div>                                          
                                         </div>
                                     </div>
                                 </div>

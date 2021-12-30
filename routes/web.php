@@ -163,6 +163,9 @@ Route::group(
         Route::post('invoice/store', 'InvoiceController@store');
         Route::get('invoice/delete/{id}', 'InvoiceController@destroy');
         Route::get('invoice/pending', 'InvoiceController@getPending');
+
+        // Bussiness
+        Route::resource('bussiness', BussinessController::class);
     }
 );
 
