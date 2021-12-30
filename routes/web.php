@@ -141,11 +141,12 @@ Route::group(
         Route::post('damage/update/{id}', 'DamageController@update');
         Route::get('damage/delete/{id}', 'DamageController@destroy');
         //expense route
-        Route::get('expense/index', 'ExpenseController@index');
-        Route::post('expense/store', 'ExpenseController@store');
-        Route::get('expense/edit/{id}', 'ExpenseController@edit');
-        Route::post('expense/update/{id}', 'ExpenseController@update');
-        Route::get('expense/delete/{id}', 'ExpenseController@destroy');
+        Route::get('expense/index', 'ExpenseController@index')->name('expense.index');
+        Route::get('expense/create', 'ExpenseController@create')->name('expense.create');
+        Route::post('expense/store', 'ExpenseController@store')->name('expense.store');
+        Route::get('expense/edit/{id}', 'ExpenseController@edit')->name('expense.edit');
+        Route::post('expense/update/{id}', 'ExpenseController@update')->name('expense.edit');
+        Route::get('expense/delete/{id}', 'ExpenseController@destroy')->name('expense.delete');
 
         Route::get('expense/today', 'ExpenseController@today_expence');
         Route::get(

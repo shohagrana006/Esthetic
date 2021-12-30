@@ -291,7 +291,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link {{Route::is('expense.index') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Expenses
@@ -300,13 +300,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('expense') }}" class="nav-link">
+                            <a href="{{route('expense.index') }}" class="nav-link  {{Route::is('expense.index') ? 'active' : ''}}">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Expenses</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                          <a href="{{ url('addexpense') }}" class="nav-link">
+                          <a href="{{ route('expense.create') }}" class="nav-link  {{Route::is('expense.create') ? 'active' : ''}}">
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Add Expenses</p>
                             </a>
