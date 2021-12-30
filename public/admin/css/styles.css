@@ -466,16 +466,14 @@ h6 {
   display: block;
 }
 
-/*
+
 .card-count {
     text-align: center;
     position: relative;
     width: 70%;
     margin: 0 20px;
     padding: 0 10px;
-} */
-
-/*
+} 
 .single-card {
     background: #222b55;
     border-radius: 5px;
@@ -499,7 +497,6 @@ h6 {
   border-radius: 0;
 }
 
-/*
 .card-icon {
     width: 30%;
     background: #fff;
@@ -507,17 +504,8 @@ h6 {
     text-align: center;
     line-height: 55px;
     border-radius: 100%;
-} */
+} 
 
-/*
-.card-icon {
-    width: 30%;
-    background: #fff;
-    border-radius: 100%;
-    text-align: center;
-} */
-
-/*
 .card-icon i {
     color: #000;
     font-size: 20px;
@@ -525,24 +513,15 @@ h6 {
     height: 50px;
     line-height: 50px;
 }
- */
-
-/*
-.card-icon i {
-    color: #000;
-    font-size: 25px;
-} */
-
-/* .card-count h5 {
+ .card-count h5 {
     line-height: 1.5;
     margin: 0;
     font-size: 15px;
     text-transform: capitalize;
-} */
-
-/* .card-count h5 span {
+} 
+.card-count h5 span {
     display: block;
-} */
+} 
 
 .single-card {
   background: #232b55;
@@ -795,6 +774,7 @@ hr {
 }
 
 .unit-area form button {
+
   /* position: absolute;
     right: 0;
     top: 32px; */
@@ -1643,7 +1623,13 @@ table .action-lists {
 }
 
 #dropdownMenuButton1 {
-  color: #000;
+    color: #000;
+}
+.example{
+    display: block;
+    overflow-x: auto;
+   white-space: nowrap;
+
 }
 .active {
   background-color: #28346d !important;
@@ -1654,3 +1640,4 @@ table .action-lists {
   overflow-x: auto;
   white-space: nowrap;
 }
+

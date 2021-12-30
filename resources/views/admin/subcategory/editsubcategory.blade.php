@@ -19,15 +19,15 @@
                                            <form action="{{ isset($sub_category) ? route('subcategory.update',$sub_category->id) : route('subcategory.store') }}"
                                                         method="Post" enctype="multipart/form-data">
                                                       @csrf
-                                                      @if (isset($sub_category->id))
+                                                      {{--  @if (isset($sub_category->id))
                                                           @method('PUT')
-                                                      @endif
+                                                      @endif  --}}
                                                     <label for=""><h5>Category</h5></label>
                                                         <select name="category_id" class="form-select" >
-                                                        @foreach($category as $row)
+                                                            @foreach($category as $row)
                                                             <option value="{{ $row->id }}"
                                                                     @isset($sub_category)
-                                                                    @if($row->id==$sub_category->category)
+                                                                    @if($row->id==$sub_category->category_id)
                                                                     selected=""
                                                                 @endif
                                                                 @endisset
@@ -40,7 +40,7 @@
                                             <div class="col-md-5 col-sm-5">
 
                                                     <label for=""><h5>Sub Category</h5></label>
-                                                    <input type="text" class="form-control" name="sub_category_name" placeholder="sub category"><br>
+                                                    <input type="text" class="form-control" name="sub_category_name" value="{{  $sub_category->sub_category_name }} "><br>
 
 
                                                     <div class="save-button">
