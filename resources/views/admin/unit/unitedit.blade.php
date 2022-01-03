@@ -1,4 +1,7 @@
 @extends('admin.master')
+@section('title')
+Edit Unit
+@endsection
 @section('content')
       <div class="pos-specing">
                         <div class="brand-area unit-area">
@@ -6,7 +9,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="page-title">
-                                            <h2>Unit Name <span>Add</span></h2>
+                                            <h2>Edit Unit Name </h2>
                                         </div>
                                     </div>
                                 </div>
@@ -35,6 +38,9 @@
                                                 <input type="text" class="form-control" name=" unit_name" class="form-control @error('unit_name') is-invalid @enderror" name="unit_name" value="{{  $unit->unit_name  }}"><br>
 
                                                 {{-- <input type="text" name="unit_name" class="form-control" value="{{  $unit->unit_name  }}"> --}}
+                                                <a href="{{ route('unit.index') }}" class="btn btn-primary">
+                                                    Back
+                                               </a>
 
                                                 <button><strong>Update</strong></button>
 

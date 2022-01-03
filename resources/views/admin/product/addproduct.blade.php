@@ -1,4 +1,7 @@
 @extends('admin.master')
+@section('title')
+Add Product
+@endsection
 @section('content')
      <div class="main_container" id="main">
         <section class="purchase-sec mt-3">
@@ -18,7 +21,7 @@
                         @endif
                             <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                
+
                             <div class="row">
                                 <div class="col-xl-4 col-lg-4 col-md-6" id="left-col">
                                     <!-- Supplier Buttons -->
@@ -96,7 +99,7 @@
                                         <select name="product_status" id="purchase-status">
                                             <option value="0">Normal</option>
                                             <option value="1">Good</option>
-                                            
+
                                         </select>
                                     </div>
 
@@ -128,7 +131,7 @@
 
                                 <div class="col-xl-4 col-lg-4 col-md-6" id="right-col">
                                     <!-- Barcode section -->
-                                    
+
                                         <div class="purchase-status dropdown">
                                         <label>Barcode Type</label>
                                         <select name="barcode">
@@ -153,7 +156,7 @@
                                         <a href="{{ route('subcategory.create') }}" class="btn-supplier"><i class="far fa-plus-circle"></i></a>
                                     </div>
 
-                                    
+
 
                                     {{-- <!-- Expiring Date section -->
                                     <div class="purchase-date box-2">
@@ -174,10 +177,10 @@
                                         <label>Discound price</label>
                                         <input type="text" class="form-control" name="discount" placeholder="Discound price">
                                     </div>
-                                   
+
                                 </div>
                                 <!-- right-col Ends -->
-                                
+
                             </div>
 
                             <div class="row">
@@ -189,11 +192,17 @@
 
                                     </div>
                                 </div>
-                                
+
                             </div>
                             <!-- Purchase Submit Button -->
+                            <div class="save-button">
                             {{-- <button class="btn-purchase-submit" id="add-task">Submit</button> --}}
-                            <button class="btn-purchase-submit" id="add-task"><strong>Save</strong></button>
+                            <a href="{{ route('product.index') }}" class="btn btn-primary">
+                                Back
+                           </a>
+                           <input  type="submit" value="Submit">
+                        {{--  </div>
+                            <button class="btn-purchase-submit" id="add-task"><strong>Save</strong></button>  --}}
 
                         </form>
                     </div>

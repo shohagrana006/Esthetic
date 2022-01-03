@@ -1,4 +1,7 @@
 @extends('admin.master')
+@section('title')
+Add Category
+@endsection
 @section('content')
       <div class="pos-specing">
             <div class="brand-area unit-area">
@@ -6,7 +9,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="page-title">
-                            <h2>Category Name <span>Add</span></h2>
+                            <h2>Category Name </h2>
                         </div>
                     </div>
                 </div>
@@ -28,6 +31,10 @@
                                     <label for=""><h5>Category</h5></label>
 
                                     <input type="text" class="form-control" name="category_name" class="form-control @error('category_name') is-invalid @enderror" name="category_name" value="{{ old('category_name') }}" placeholder="Category Name"><br>
+
+                                    <a href="{{ route('category.index') }}" class="btn btn-primary">
+                                        Back
+                                   </a>
                                     <button><strong>Save</strong></button>
                                 </form>
 
