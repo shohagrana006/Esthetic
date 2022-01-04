@@ -11,7 +11,7 @@
      @endpush
 @section('content')
         <div class="pos-specing">
-            <div class="brand-area unit-area">   
+            <div class="brand-area unit-area">
                     <div class="row">
                         <div class="col-xl-10 offset-xl-1 col-md-10 offset-md-1 sectionBg">
                             <div class="addButton">
@@ -23,7 +23,7 @@
                                 <div class="alert alert-success">
                                     {{ session('success') }}
                                 </div>
-                            @endif           
+                            @endif
                             <div class="row">
                                 <div class="col-md-12">
                                     <table id="example1" class="table table table-striped table-md">
@@ -34,8 +34,8 @@
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>                                          
-                                            @foreach ($bussiness as $bussi)                                                                                         
+                                        <tbody>
+                                            @foreach ($bussiness as $bussi)
                                             <tr>
                                                 <th>{{ $loop->index +1 }}</th>
                                                 <td>{{ $bussi->bussiness_name }}</td>
@@ -47,8 +47,8 @@
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
-                                            </tr>  
-                                            @endforeach                                        
+                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                         
+                    </div>
             </div>
         </div>
         @push('js')
@@ -103,4 +103,4 @@
     });
 </script>
 @endpush
-        @endsection
+ @endsection
