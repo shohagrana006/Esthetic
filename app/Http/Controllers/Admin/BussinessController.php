@@ -69,7 +69,10 @@ class BussinessController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.business.addbusiness',[
+            'data' =>  Bussiness::find($id),
+        ]);
+       
     }
 
     /**
@@ -81,7 +84,14 @@ class BussinessController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'bussiness_name' => 'required|unique:bussinesses,bussiness_name,'.$id,
+        ]);
+
+        Bussiness::find($id)->update([
+            'bussiness_name' => $request->bussiness_name,
+        ]);
+        return redirect('/bussiness')->with('success', __('Bussiness name Update Successfully !!'));
     }
 
     /**

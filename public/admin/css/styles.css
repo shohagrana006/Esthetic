@@ -473,7 +473,7 @@ h6 {
     width: 70%;
     margin: 0 20px;
     padding: 0 10px;
-} 
+}
 .single-card {
     background: #222b55;
     border-radius: 5px;
@@ -504,7 +504,7 @@ h6 {
     text-align: center;
     line-height: 55px;
     border-radius: 100%;
-} 
+}
 
 .card-icon i {
     color: #000;
@@ -518,10 +518,10 @@ h6 {
     margin: 0;
     font-size: 15px;
     text-transform: capitalize;
-} 
+}
 .card-count h5 span {
     display: block;
-} 
+}
 
 .single-card {
   background: #232b55;
