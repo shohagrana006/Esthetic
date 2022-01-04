@@ -62,8 +62,8 @@
                         </tr>
                     </thead>
 
-                        @foreach ($purchases as $key=>$purchase)
-                        <tbody>
+                    <tbody>
+                            @foreach ($purchases as $key=>$purchase)
                         <tr>
                             <td class="text-center" >{{$key+1}}</td>
                             <td class="text-center">{{$purchase->purchase_date}}</td>
@@ -93,8 +93,8 @@
                                 <a href="{{ route('purchage.delete',$purchase->id) }} " id="delete"> <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
-                    @endforeach
                 </table>
             </div>
         </div>
@@ -118,7 +118,9 @@
     $(function () {
         $("#example1").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+            
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,
@@ -129,7 +131,10 @@
             "autoWidth": false,
             "responsive": true,
         });
+        
+        
     });
+    
 </script>
 @endpush
 @endsection

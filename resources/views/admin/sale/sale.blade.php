@@ -41,7 +41,7 @@ Sale
                                 {{-- <button type="button" class="btn btn-primary"onclick="addInvoiceModalOpen()" data-toggle="modal" data-target="#myModal">
                                     Add Invoice
                                   </button> --}}
-                                <a  class="btn btn-dark btn-sm" style="float: right" onclick="addInvoiceModalOpen()"> Add Invoice</a>
+                                <a data-toggle="modal" data-target="#exampleModal"  class="btn btn-dark btn-sm" style="float: right" onclick="addInvoiceModalOpen()"> Add Invoice</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -82,8 +82,8 @@ Sale
     <!-- /.content-wrapper -->
 
     <!-- Add Invoice Modal -->
-    <div class="modalfade" id="addInvoiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
+    
+    <div class="modal fade" id="addInvoiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content modalContent">
                 <form id="addInvoiceSelectItem">
@@ -220,7 +220,7 @@ Sale
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Cancel</button>
                         <button id="invoiceAddConfirmBtn" type="submit" class="btn btn-danger btn-sm">Store</button>
                     </div>
                 </form>
@@ -229,7 +229,9 @@ Sale
     </div>
 @endsection
 
-@section('script')
+@push('js')
+    
+
     <!-- Handlebars templete -->
     <script id="addRowTemplete" type="text/x-handlebars-template">
         <tr id="addMoreItem">
@@ -257,7 +259,7 @@ Sale
                 <i class="btn btn-danger btn-sm fa fa-window-close" id="removeItem"></i>
             </td>
         </tr>
-    </>
+    </script>
     <script type="text/javascript">
         getInvoices();
 
@@ -305,9 +307,61 @@ Sale
 
         // Add Invoice Modal Open
         function addInvoiceModalOpen() {
+           
             $('#addInvoiceModal').modal('show');
+          
+            $('#addCategoryName').empty();
+            $('#addCategoryName').append($('<option></option>').html('Loading ..'));
+
+            axios.get('/getProductInfo').then((response) => {
+                if(response.status == 200) {
+
+                    const categories = response.data.categories;
+
+                    $('#addCategoryName').empty();
+                    $('#addCategoryName').append($('<option></option>').val("").html("Select"));
+
+                    $.each(categories, function (i) {
+                        $('#addCategoryName').append($("<option></option>").val(categories[i].id).html(categories[i].name));
+                    })
+                }
+
+            }).catch((error) => {
+                errorMessage(error.message)
+            })
+
+            // Get Invoice Number
+            axios.get('/getInvoiceNoAndCurrentDate').then((response) => {
+                if(response.status == 200) {
+                    $("#invoiceNo").val(response.data.invoiceNo);
+                    $("#date").val(response.data.date);
+                }
+            }).catch((error) => {
+                errorMessage(error.message)
+            })
+
+            // Get Customers
+            $('#customer').empty();
+            $('#customer').append($('<option></option>').html('Loading ..'));
+
+            axios.get('/getCustomers').then(response => {
+                if(response.status == 200) {
+
+                    const customers = response.data;
+
+                    $('#customer').empty();
+                    $('#customer').append($('<option></option>').val("").html("Select"));
+                    $('#customer').append($('<option></option>').val("0").html("New Customer"));
+
+                    $.each(customers, function (i) {
+                        $('#customer').append($("<option></option>").val(customers[i].id).html(customers[i].name+' '+'('+customers[i].number+', '+customers[i].address+')'));
+                    })
+                }
+            }).catch(error => {
+                errorMessage(error.message)
+            })
         }
-        addInvoiceModalOpen();
+        // addInvoiceModalOpen();
 
         // Get products on category select
         $(document).on('change', '#addCategoryName', function() {
@@ -513,9 +567,7 @@ Sale
         });
     </script>
 
-
-@endsection
-
+@endpush
 
 
 
