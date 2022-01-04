@@ -129,7 +129,7 @@ Route::group(
         Route::post(
             'purchage/updatepending/{id}',
             'PurchageController@updatePurchaseStatus'
-        );
+        )->name('purchage.pending.update');
         //damage route
         Route::get('damage/index', 'DamageController@index');
         Route::post('damage/store', 'DamageController@store');
