@@ -129,7 +129,7 @@
                                                 <td>
                                                     <img src="{{asset('public/' .$products->image) }}" width="50px" height="70px"></td>
 
-                                                
+
                                                 <td>{{ $products-> product_description}}</td>
                                                 <td>
                                                     <a href="{{ route('product.edit',$products->id) }}"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
@@ -146,12 +146,6 @@
                                         @endforeach
                                         </tbody>
                                     </table>
-
-
-
-
-
-
 
                                 </div>
                             </div>

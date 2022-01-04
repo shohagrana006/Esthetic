@@ -246,6 +246,12 @@
                                 <p>Add Purchase</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('purchage.pending') }}" class="nav-link {{Route::is('purchage.pending') ? 'active' : ''}}">
+                                <i class="sub-nav fas fa-chevron-right"></i>
+                                <p>Pending Purchase</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -321,7 +327,7 @@
                  <a href="{{ route('logout') }}"
                  onclick="event.preventDefault();
                  document.getElementById('logout-form').submit();"
-                 class="nav-link active">
+                 class="nav-link {{Route::is('logout') ? 'active' : ''}}">
                  <i class="nav-icon fas fa-tachometer-alt"></i>
 
                 <p>Logout</p>

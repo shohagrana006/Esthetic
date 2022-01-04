@@ -177,10 +177,12 @@
 
 
                                             <div class="col-md-3 col-sm-6">
+                                                <button class="btn-purchase-submit" id="add-task">
 
                                                 <a href="{{ route('purchage.index') }}" class="btn-purchase-submit" id="add-task">
                                                     Back
                                                </a>
+                                            </button>
                                                 {{-- <button class="btn-purchase-submit" id="add-task">Submit</button> --}}
                                             </div>
                                             <div class="col-md-3 col-sm-6">
@@ -199,8 +201,7 @@
                     $('.amount').keyup(function() {
                         var result= 00;
                      result = parseInt($('#purchage_quantity').val()) * parseInt($('#purchage_unit_price').val());
-                   $('.parchage_payable_amount').val(result);
-
+                        $('.parchage_payable_amount').val(result);
                    });
                    $('.amount').keyup(function() {
                         var result= 00;

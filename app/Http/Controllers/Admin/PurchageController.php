@@ -22,7 +22,7 @@ class PurchageController extends Controller
             'branch'
         )
             ->orderBy('id', 'desc')
-            ->get();
+            ->paginate(5);
         return view('admin.purchase.purchase', compact('purchases'));
     }
     public function create()
@@ -123,15 +123,11 @@ class PurchageController extends Controller
     }
     public function getPending()
     {
-        $product = Purchage::where('purchage_status', 0)
+        $purchases = Purchage::where('purchage_status', 3)
             ->with('supplier', 'warehouse', 'product', 'branch')
             ->orderBy('id', 'desc')
             ->get();
-        return $this->RespondWithSuccess(
-            'All Purchage view  successful',
-            $product,
-            200
-        );
+        return view('admin.purchase.pendingParchage', compact('purchases'));
     }
     public function updatePurchaseStatus(Request $request, $id)
     {
@@ -149,16 +145,12 @@ class PurchageController extends Controller
             if ($updateProductQuantity == true) {
                 Purchage::where('id', $id)->update(['purchage_status' => 1]);
             }
-            return $this->RespondWithSuccess(
-                'purchage Update pending successful',
-                $data,
-                200
-            );
+            $this->RespondWithSuccess('purchage pending Update successful');
+            return redirect()->route('purchage.index');
         } catch (Exception $e) {
             return $this->RespondWithEorror(
-                'purchage update pending not successful  ',
-                $e->getMessage(),
-                400
+                'purchage pending update not successful  ',
+                $e->getMessage()
             );
         }
     }
