@@ -102,7 +102,8 @@
 
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link {{Route::is('unit.index') ? 'active' : ''}}">
+
                         <i class="nav-icon far fa-plus-square"></i>
                         <p>
                             Unit
@@ -111,7 +112,8 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('unit.index') }}" class="nav-link">
+                            <a href="{{ route('unit.index') }}" class="nav-link {{Route::is('unit.index') ? 'active' : ''}}">
+
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>
                                     Unit
@@ -119,7 +121,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('unit.create') }}" class="nav-link">
+                            <a href="{{ route('unit.create') }}" class="nav-link {{Route::is('unit.create') ? 'active' : ''}}">
+
+
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>
                                     Add Unit
@@ -129,7 +133,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link {{Route::is('warehouse.index') ? 'active' : ''}}">
+
                         <i class="nav-icon fas fa-warehouse"></i>
                         <p>
                             Warehouse
@@ -138,14 +143,16 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('warehouse.index') }}" class="nav-link">
+                            <a href="{{ route('warehouse.index') }}" class="nav-link {{Route::is('warehouse.index') ? 'active' : ''}}">
+
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Warehouse</p>
                             </a>
                         </li>
                         <li class="nav-item">
 
-                            <a href="{{ route('warehouse.create') }}" class="nav-link">
+                            <a href="{{ route('warehouse.create') }}" class="nav-link {{Route::is('warehouse.create') ? 'active' : ''}}">
+
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Add Warehouse</p>
                             </a>
@@ -154,7 +161,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link {{Route::is('category.index') ? 'active' : ''}}">
+
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Categories
@@ -164,13 +172,15 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
 
-                            <a href="{{ route('category.index') }}" class="nav-link">
+                            <a href="{{ route('category.index') }}" class="nav-link {{Route::is('category.index') ? 'active' : ''}}">
+
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Categories</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('category.create') }}" class="nav-link">
+                            <a href="{{ route('category.create') }}" class="nav-link {{Route::is('category.create') ? 'active' : ''}}">
+
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Add Category</p>
                             </a>
@@ -178,7 +188,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link {{Route::is('subcategory.index') ? 'active' : ''}}">
+
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Sub Categories
@@ -188,13 +199,15 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
 
-                            <a href="{{ route('subcategory.index') }}" class="nav-link">
+                            <a href="{{ route('subcategory.index') }}" class="nav-link {{Route::is('subcategory.index') ? 'active' : ''}}">
+
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Sub Categories</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('subcategory.create') }}" class="nav-link">
+                            <a href="{{ route('subcategory.create') }}" class="nav-link {{Route::is('subcategory.create') ? 'active' : ''}}">
+
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Add Sub Category</p>
                             </a>
@@ -202,7 +215,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link {{Route::is('product.index') ? 'active' : ''}}">
+
                         <i class="nav-icon fas fa-boxes"></i>
                         <p>
                             Products
@@ -211,13 +225,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('product.index') }}" class="nav-link">
+                            <a href="{{ route('product.index') }}" class="nav-link {{Route::is('product.index') ? 'active' : ''}}">
+
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Products</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('product.create') }}" class="nav-link">
+                            <a href="{{ route('product.create') }}" class="nav-link {{Route::is('product.create') ? 'active' : ''}}">
+
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Add Product</p>
                             </a>
@@ -255,7 +271,9 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    {{-- <a href="#" class="nav-link"> --}}
+                    <a href="#" class="nav-link {{Route::is('sale.index') ? 'active' : ''}}">
+
                         <i class="nav-icon fas fa-badge-percent"></i>
                         <p>
                             Sales
@@ -264,13 +282,17 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('sale') }}" class="nav-link">
+                            {{-- <a href="{{ url('sale') }}" class="nav-link"> --}}
+                            <a href="{{ route('sale.index') }}" class="nav-link {{Route::is('sale.index') ? 'active' : ''}}">
+
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Sales</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('addsale') }}" class="nav-link">
+                            {{-- <a href="{{ url('addsale') }}" class="nav-link"> --}}
+                            <a href="{{ route('sale.create') }}" class="nav-link {{Route::is('sale.create') ? 'active' : ''}}">
+
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Add Sales</p>
                             </a>

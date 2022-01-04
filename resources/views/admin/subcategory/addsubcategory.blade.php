@@ -1,4 +1,7 @@
 @extends('admin.master')
+@section('title')
+Add Sub Category
+@endsection
 @section('content')
       <div class="pos-specing">
                         <div class="brand-area unit-area">
@@ -6,7 +9,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="page-title">
-                                            <h2>Sub Category Name <span>Add</span></h2>
+                                            <h2>Create Sub Category</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -44,6 +47,10 @@
 
 
                                                     <div class="save-button">
+
+                                                        <a href="{{ route('subcategory.index') }}" class="btn btn-primary">
+                                                            Back
+                                                       </a>
                                                     <input type="submit" value="Submit">
                                                     </div>
 

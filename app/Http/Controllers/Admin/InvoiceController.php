@@ -22,9 +22,11 @@ class InvoiceController extends Controller
 
     public function index()
     {
-        
+
         $invoice =Invoice::orderBy('id','desc')->get();
-        return $this->RespondWithSuccess('All invoice view  successful', $invoice, 200);
+        // return $this->RespondWithSuccess('All invoice view  successful', $invoice, 200);
+        return view('admin.sale.sale', compact('invoice'));
+
     }
 
 
@@ -54,7 +56,15 @@ class InvoiceController extends Controller
 
     public function create()
     {
-        //
+
+        $invoice = Invoice::all();
+        $invoice_details = InvoiceDetail::all();
+
+        return view(
+            'admin.sale.addsale',
+            compact('invoice', 'invoice_details')
+        );
+
     }
 
 
@@ -90,7 +100,7 @@ class InvoiceController extends Controller
                         $invoice_details = new InvoiceDetail();
                         $invoice_details->date = $date->format('Y-m-d');
                         $invoice_details->invoice_id = $invoice->id;
-                                                
+
                         $invoice_details->product_id = $request->product_id[$i];
                         $invoice_details->selling_quantity = $request->selling_quantity[$i];
                         $invoice_details->unit_price = $request->unit_price[$i];
@@ -158,7 +168,7 @@ class InvoiceController extends Controller
         }
     }
 
-    
+
     public function show($id)
     {
         //
@@ -206,7 +216,7 @@ class InvoiceController extends Controller
     public function getPending()
     {
         $invoice = Invoicedetail::where('status', 0)->orderBy('id', 'desc')->get();
-        
+
         return $this->RespondWithSuccess(
             'All Invoice view  successful',
             $invoice,

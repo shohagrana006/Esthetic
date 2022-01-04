@@ -155,11 +155,12 @@ Route::group(
         );
 
         //invoice route
-        Route::get('invoice/index', 'InvoiceController@index');
-        Route::get('product/search/{sku}', 'InvoiceController@productSearch');
-        Route::post('invoice/store', 'InvoiceController@store');
-        Route::get('invoice/delete/{id}', 'InvoiceController@destroy');
-        Route::get('invoice/pending', 'InvoiceController@getPending');
+        Route::get('invoice/index', 'InvoiceController@index')->name('sale.index');
+        Route::get('invoice/create', 'InvoiceController@create')->name('sale.create');
+        Route::get('product/search/{sku}', 'InvoiceController@productSearch')->name('sale.search');
+        Route::post('invoice/store', 'InvoiceController@store')->name('sale.store');
+        Route::get('invoice/delete/{id}', 'InvoiceController@destroy')->name('sale.delete');
+        Route::get('invoice/pending', 'InvoiceController@getPending')->name('sale.pending');
 
         // Bussiness
         Route::resource('bussiness', BussinessController::class);
