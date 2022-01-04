@@ -40,8 +40,8 @@
                                                 <th>{{ $loop->index +1 }}</th>
                                                 <td>{{ $bussi->bussiness_name }}</td>
                                                 <td class="table-action">
-                                                    <a href="#"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
-                                                    <a onclick="event.preventDefault();document.getElementById('bussi_dlt-{{ $bussi->id }}').submit();" href=""> <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
+                                                    <a href="{{ route('bussiness.edit',$bussi->id) }}"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
+                                                    <a onclick="event.preventDefault();deleteForm({{ $bussi->id }})" href=""> <i style="color:red" class="fa fa-trash-alt" aria-hidden="true"></i> </a>
                                                 </td>
                                                 <form id="bussi_dlt-{{ $bussi->id }}" action="{{ route('bussiness.destroy',$bussi->id) }}" method="POST">
                                                     @csrf
@@ -85,6 +85,7 @@
 <script src="{{ asset('public/admin/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('public/admin/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('public/admin/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(function () {
         $("#example1").DataTable({
@@ -101,6 +102,31 @@
             "responsive": true,
         });
     });
+
+   function deleteForm(id){
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            document.querySelector('#bussi_dlt-'+id).submit();
+            Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+            )
+        }
+        })
+    }
+
+
+
+    
 </script>
 @endpush
         @endsection
