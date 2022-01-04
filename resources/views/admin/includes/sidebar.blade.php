@@ -265,7 +265,9 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    {{-- <a href="#" class="nav-link"> --}}
+                    <a href="#" class="nav-link {{Route::is('sale.index') ? 'active' : ''}}">
+
                         <i class="nav-icon fas fa-badge-percent"></i>
                         <p>
                             Sales
@@ -274,13 +276,17 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('sale') }}" class="nav-link">
+                            {{-- <a href="{{ url('sale') }}" class="nav-link"> --}}
+                            <a href="{{ route('sale.index') }}" class="nav-link {{Route::is('sale.index') ? 'active' : ''}}">
+
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Sales</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('addsale') }}" class="nav-link">
+                            {{-- <a href="{{ url('addsale') }}" class="nav-link"> --}}
+                            <a href="{{ route('sale.create') }}" class="nav-link {{Route::is('sale.create') ? 'active' : ''}}">
+
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Add Sales</p>
                             </a>
