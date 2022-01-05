@@ -146,6 +146,13 @@
             @endforeach
         @endif
     </script>
+    <script>
+        if ($(".menu-show ul li a").hasClass('active')) {
+            $(".active .nav-treeview").addClass("d-block");
+        } else{
+            $(".active .nav-treeview").removeClass("d-block");
+        }   
+    </script>
 
     @stack('js')
 

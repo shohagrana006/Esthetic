@@ -20,7 +20,7 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
+        <nav class="mt-2 menu-show">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                 <li class="nav-item menu-open">
@@ -30,8 +30,8 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link {{Route::is('supplier.index') ? 'active' : ''}}">
+                <li class="nav-item {{Route::is('supplier.index','supplier.create') ? 'active' : ''}}">
+                    <a href="#" class="nav-link {{Route::is('supplier.index','supplier.create') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
                             Supplier
@@ -53,8 +53,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link {{Route::is('brand.index') ? 'active' : ''}}">
+                <li class="nav-item {{Route::is('brand.index','brand.create') ? 'active' : ''}}">
+                    <a href="#" class="nav-link {{Route::is('brand.index','brand.create') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-warehouse"></i>
                         <p>
                             Brand
@@ -76,8 +76,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link {{Route::is('branch.index') ? 'active' : ''}}">
+                <li class="nav-item {{Route::is('branch.index','branch.create') ? 'active' : ''}}">
+                    <a href="#" class="nav-link {{Route::is('branch.index','branch.create') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-warehouse"></i>
                         <p>
                             Branch
@@ -101,8 +101,8 @@
                 </li>
 
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link {{Route::is('unit.index') ? 'active' : ''}}">
+                <li class="nav-item  {{Route::is('unit.index','unit.create') ? 'active' : ''}}">
+                    <a href="#" class="nav-link {{Route::is('unit.index','unit.create') ? 'active' : ''}}">
 
                         <i class="nav-icon far fa-plus-square"></i>
                         <p>
@@ -132,8 +132,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link {{Route::is('warehouse.index') ? 'active' : ''}}">
+                <li class="nav-item {{Route::is('warehouse.index','warehouse.create') ? 'active' : ''}}">
+                    <a href="#" class="nav-link {{Route::is('warehouse.index','warehouse.create') ? 'active' : ''}}">
 
                         <i class="nav-icon fas fa-warehouse"></i>
                         <p>
@@ -160,8 +160,8 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link {{Route::is('category.index') ? 'active' : ''}}">
+                <li class="nav-item {{Route::is('category.index','category.create') ? 'active' : ''}}">
+                    <a href="#" class="nav-link {{Route::is('category.index','category.create') ? 'active' : ''}}">
 
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
@@ -187,8 +187,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link {{Route::is('subcategory.index') ? 'active' : ''}}">
+                <li class="nav-item {{Route::is('subcategory.index','subcategory.create') ? 'active' : ''}}">
+                    <a href="#" class="nav-link {{Route::is('subcategory.index','subcategory.create') ? 'active' : ''}}">
 
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
@@ -214,8 +214,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link {{Route::is('product.index') ? 'active' : ''}}">
+                <li class="nav-item {{Route::is('product.index','product.create') ? 'active' : ''}}">
+                    <a href="#" class="nav-link {{Route::is('product.index','product.create') ? 'active' : ''}}">
 
                         <i class="nav-icon fas fa-boxes"></i>
                         <p>
@@ -241,8 +241,8 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link {{Route::is('purchage.index') ? 'active' : ''}}">
+                <li class="nav-item {{Route::is('purchage.index','purchage.create') ? 'active' : ''}}">
+                    <a href="#" class="nav-link {{Route::is('purchage.index','purchage.create') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-luggage-cart"></i>
                         <p>
                             Purchase
@@ -270,9 +270,9 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{Route::is('sale.index','sale.create') ? 'active' : ''}}">
                     {{-- <a href="#" class="nav-link"> --}}
-                    <a href="#" class="nav-link {{Route::is('sale.index') ? 'active' : ''}}">
+                    <a href="#" class="nav-link {{Route::is('sale.index','sale.create') ? 'active' : ''}}">
 
                         <i class="nav-icon fas fa-badge-percent"></i>
                         <p>
@@ -299,8 +299,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li class="nav-item {{Route::is('bussiness.index','bussiness.create') ? 'active' : ''}}">
+                    <a href="#" class="nav-link {{Route::is('bussiness.index','bussiness.create') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Business
@@ -322,8 +322,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link {{Route::is('expense.index') ? 'active' : ''}}">
+                <li class="nav-item {{Route::is('expense.index','expense.create') ? 'active' : ''}}">
+                    <a href="#" class="nav-link {{Route::is('expense.index','expense.create') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Expenses
@@ -371,4 +371,7 @@
     </div>
     <!-- /.sidebar -->
 </aside>
+
+
+
 @endauth
