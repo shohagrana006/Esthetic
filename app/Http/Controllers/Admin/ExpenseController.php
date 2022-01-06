@@ -48,7 +48,7 @@ class ExpenseController extends Controller
         $expense->date = $date->format('Y-m-d');
         $expense->save();
         $this->RespondWithSuccess('Expense added successfully');
-        return redirect()->route('expense.create');
+        return redirect()->route('expense.index');
     }
 
     public function show($id)
@@ -59,7 +59,8 @@ class ExpenseController extends Controller
     public function edit($id)
     {
         $data = Expense::find($id);
-        return $this->RespondWithSuccess('expense edit successful', $data, 200);
+        // return $this->RespondWithSuccess('expense edit successful', $data, 200);
+        return view('admin.expense.addexpense', compact('data'));
     }
 
     public function update(Request $request, $id)
@@ -75,27 +76,41 @@ class ExpenseController extends Controller
             $expense->date = $date->format('Y-m-d');
             $expense->save();
 
-            return $this->RespondWithSuccess(
+            $this->RespondWithSuccess(
                 'Expense update successful',
-                $expense,
-                200
+
             );
+            return redirect()->route('expense.index');
         } catch (Exception $e) {
-            return $this->RespondWithEorror(
+            // return $this->RespondWithEorror(
+            //     'Expense update not successful  ',
+            //     $e->getMessage(),
+            //     400
+            // );
+            $this->RespondWithEorror(
                 'Expense update not successful  ',
-                $e->getMessage(),
-                400
+                $e->getMessage()
             );
+            return redirect()->route('expense.index');
         }
     }
 
     public function destroy($id)
     {
-        Expense::destroy($id);
-        return response()->json([
-            'success' => true,
-            'message' => ' Expense Deleted Successful',
-        ]);
+        $data = Expense::destroy($id);
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => ' Expense Deleted Successful',
+        // ]);
+        if ($data) {
+            $this->RespondWithSuccess(' Expense  Deleted Successful');
+            return redirect()->route('expense.index');
+        } else {
+
+                $this->RespondWithEorror(' Expense not Deleted Successful');
+                return redirect()->route('expense.index');
+
+        }
     }
 
     public function today_expence()
@@ -106,19 +121,24 @@ class ExpenseController extends Controller
 
         $expense = Expense::where('date', $today)->get();
 
-        if (!$expense->isEmpty()) {
-            return $this->RespondWithSuccess(
-                'Today Expense purchage view successful',
-                $expense,
-                200
-            );
-        } else {
-            return $this->RespondWithEorror(
-                'no data found today',
-                $expense,
-                400
-            );
-        }
+        $expenses = Expense::latest()->where('date', $today)->get();
+        return view('admin.expense.today', compact('expenses'));
+
+
+        // if (!$expense->isEmpty()) {
+        //     // return $this->RespondWithSuccess(
+        //     //     'Today Expense purchage view successful',
+        //     //     $expense,
+        //     //     200
+        //     // );
+
+        // } else {
+        //     return $this->RespondWithEorror(
+        //         'no data found today',
+        //         $expense,
+        //         400
+        //     );
+        // }
     }
 
     public function monthly_expense($month = null)
@@ -128,19 +148,21 @@ class ExpenseController extends Controller
             $month = date('F');
         }
         $expenses = Expense::where('month', $month)->get();
-        if (!$expenses->isEmpty()) {
-            return $this->RespondWithSuccess(
-                'monthly Expense purchage view successful',
-                $expenses,
-                200
-            );
-        } else {
-            return $this->RespondWithEorror(
-                'no data found in this month',
-                $expenses,
-                400
-            );
-        }
+        return view('admin.expense.month', compact('expenses','month'));
+
+        // if (!$expenses->isEmpty()) {
+        //     return $this->RespondWithSuccess(
+        //         'monthly Expense purchage view successful',
+        //         $expenses,
+        //         200
+        //     );
+        // } else {
+        //     return $this->RespondWithEorror(
+        //         'no data found in this month',
+        //         $expenses,
+        //         400
+        //     );
+        // }
     }
 
     public function yearly_expense($year = null)
@@ -151,22 +173,25 @@ class ExpenseController extends Controller
         $expenses = Expense::latest()
             ->where('year', $year)
             ->get();
+            $years= Expense::all();
         $years = Expense::select('year')
             ->distinct()
             ->take(12)
             ->get();
-        if (!$expenses->isEmpty()) {
-            return $this->RespondWithSuccess(
-                'yearly Expense purchage view successful',
-                $expenses,
-                200
-            );
-        } else {
-            return $this->RespondWithEorror(
-                'no data found in this year',
-                $expenses,
-                400
-            );
-        }
+        return view('admin.expense.year', compact('expenses','year','years'));
+
+        // if (!$expenses->isEmpty()) {
+        //     return $this->RespondWithSuccess(
+        //         'yearly Expense purchage view successful',
+        //         $expenses,
+        //         200
+        //     );
+        // } else {
+        //     return $this->RespondWithEorror(
+        //         'no data found in this year',
+        //         $expenses,
+        //         400
+        //     );
+        // }
     }
 }

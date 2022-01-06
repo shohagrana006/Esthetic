@@ -141,18 +141,18 @@ Route::group(
         Route::get('expense/create', 'ExpenseController@create')->name('expense.create');
         Route::post('expense/store', 'ExpenseController@store')->name('expense.store');
         Route::get('expense/edit/{id}', 'ExpenseController@edit')->name('expense.edit');
-        Route::post('expense/update/{id}', 'ExpenseController@update')->name('expense.edit');
+        Route::post('expense/update/{id}', 'ExpenseController@update')->name('expense.update');
         Route::get('expense/delete/{id}', 'ExpenseController@destroy')->name('expense.delete');
 
-        Route::get('expense/today', 'ExpenseController@today_expence');
+        Route::get('expense/today', 'ExpenseController@today_expence')->name('expense.today');
         Route::get(
             'expense/month/{month?}',
             'ExpenseController@monthly_expense'
-        );
+        )->name('expense.month');
         Route::get(
             'expense/yearly/{year?}',
             'ExpenseController@yearly_expense'
-        );
+        )->name('expense.yearly');
 
         //invoice route
         Route::get('invoice/index', 'InvoiceController@index')->name('sale.index');
