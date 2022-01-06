@@ -21,6 +21,18 @@ Route::group(
     ],
     function () {
         Route::get('/', 'DashboardController@index');
+
+        Route::get('home/today', 'DashboardController@today')->name('dashboard.today');
+        Route::get('home/yesterday', 'DashboardController@yesterday')->name('dashboard.yesterday');
+        Route::get('home/month/{month?}','DashboardController@month')->name('dashboard.month');
+        Route::get('home/previous_month/{month?}','DashboardController@previous_month')->name('dashboard.previous_month');
+        Route::get('home/yearly/{year?}','DashboardController@yearly')->name('dashboard.yearly');
+
+
+
+
+
+
         Route::get('logout', 'AuthController@logout');
         //customer route
         Route::get('customer/index', 'CustomerController@index');

@@ -8,6 +8,7 @@
                     <h2>
                         <strong>Welcome to Admin Panel</strong>
                     </h2>
+                    <h3><strong>{{ date('d F Y', strtotime('-1 day')) }} report </strong> </h3>
                 </div>
             </div>
             <div class="row">
@@ -18,21 +19,6 @@
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                                     Filter
                                   </button>
-
-                                  {{--  <select class="form-select" aria-label="Default select example">
-                                    <option value="1">Today</option>
-                                    <option value="2">Yesterday</option>
-                                    <option value="3">Last 7 days</option>
-                                    <option value="3">Last 30 days</option>
-                                    <option value="3">This Month</option>
-                                    <option value="3">Last Month</option>
-                                    <option value="3">This Month Last Year</option>
-                                    <option value="3">This Year</option>
-                                    <option value="3">Last Year</option>
-                                    <option value="3">Current Financial Year</option>
-                                    <option value="3">Last Financial Year</option>
-                                    <option value="3">Custom Range</option>
-                                </select>  --}}
                                           <ul class="dropdown-menu">
                                             {{--  <li><a class="dropdown-item" href="{{ route('expense.today') }}">Today</a></li>  --}}
                                             <li><a class="dropdown-item" href="{{ route('dashboard.today') }}">Today</a></li>
@@ -69,7 +55,7 @@
                     <div class="card-count">
                         <h5>Total Purchase <span>
                                 <strong> <i class="fas fa-dollar-sign"></i>
-                                    {{ $purchages->sum('purchage_quantity') }} Taka
+                                    {{ $yesterday_purchages->sum('purchage_quantity') }} Taka
 
                                 </strong>
                             </span>
@@ -84,7 +70,7 @@
                     </div>
                     <div class="card-count">
                         <h5>Total Expence<span>
-                                <strong><i class="fas fa-dollar-sign"></i> {{ $expenses->sum('amount') }} Taka </strong>
+                                <strong><i class="fas fa-dollar-sign"></i> {{ $yesterday_expenses->sum('amount') }} Taka </strong>
                             </span>
                         </h5>
                     </div>
@@ -97,7 +83,7 @@
                     </div>
                     <div class="card-count">
                         <h5>Total Stock <br> Sell Value <span>
-                                <strong><i class="fas fa-dollar-sign"></i> {{ $product->sum('seling_price') }}</strong>
+                                <strong><i class="fas fa-dollar-sign"></i> {{ $yesterday_product->sum('seling_price') }}</strong>
                             </span>
                         </h5>
                     </div>
@@ -110,7 +96,7 @@
                     </div>
                     <div class="card-count">
                         <h5>Total Products <span>
-                                <strong><i class="fas fa-dollar-sign"></i> {{ $product->sum('quantity') }}</strong>
+                                <strong><i class="fas fa-dollar-sign"></i> {{ $yesterday_product->sum('quantity') }}</strong>
                             </span>
                         </h5>
                     </div>
@@ -124,7 +110,7 @@
                     <div class="card-count">
                         <h5>Damaged Products <span>
                                 <strong><i class="fas fa-dollar-sign"></i>
-                                   {{ $damage->sum('damage_quantity') }}
+                                   {{ $yesterday_damage->sum('damage_quantity') }}
 
                                 </strong>
                             </span>
@@ -147,7 +133,7 @@
             </div>  --}}
         </div>
     </div>
-    <div class="chart-heading">
+    {{--  <div class="chart-heading">
         <div class="heading-title">
             <h4>
                 <strong>Sales Last 30 Days</strong>
@@ -172,7 +158,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div>  --}}
     <div id="chartdiv"></div>
   </div>
 @endsection
