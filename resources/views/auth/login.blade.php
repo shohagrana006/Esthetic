@@ -6,7 +6,7 @@
         <div
             class="login__card d-flex flex-direction-column justify-content-center align-items-center border-radius--lg bg--secondary">
             <div class="logo">
-                <img src="admin/img/asthetic pos 1.png" alt="" class="w-100" />
+                {{-- <img src="{{ asset('public') }}/admin/img/asthetic pos 1.png" alt="" class="w-25" /> --}}
             </div>
             <h2 class="title margin-buttom color--primary">Welcome</h2>
             <form method="POST" action="{{ route('login') }}">

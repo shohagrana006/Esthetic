@@ -49,7 +49,8 @@
         <li class="admin-icon">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle user-drop-btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent;">
-                    <img src="img/Profile_id.png" alt="" style="width: 30px;">{{ Auth::user()->name }}</button>
+                    {{-- <img src="img/Profile_id.png" alt="" style="width: 30px;"> --}}
+                {{ Auth::user()->name }}</button>
                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile </a></li>
                     <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Setting</a></li>
