@@ -33,18 +33,18 @@
                          <div class="filter d-flex dashboard-filter-btn">
                                 <span style="font-size: large; font-weight: bold;"><i
                                         class="far fa-grip-vertical"></i></span>
-                                <div class="container">
+                        <div class="container">
                             <!-- Example single danger button -->
                                 <div class="btn-group">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                                     Filter
-                                </button>
-                                <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('expense.today') }}">Today Expence</a></li>
-                            <li><a class="dropdown-item" href="{{ route('expense.month') }}">Monthly Expence</a></li>
-                            <li><a class="dropdown-item" href="{{ route('expense.yearly') }}">Yearly Expence</a></li>
-                            </ul>
-                            </div>
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ route('expense.today') }}">Today Expence</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('expense.month') }}">Monthly Expence</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('expense.yearly') }}">Yearly Expence</a></li>
+                                   </ul>
+                                 </div>
                         </div>
 
                                     </div>

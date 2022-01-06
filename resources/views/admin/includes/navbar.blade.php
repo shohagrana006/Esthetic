@@ -31,16 +31,16 @@
             <li title="Today's Profit ">
                 <i class="fa fa-dollar-sign" aria-hidden="true"></i>
             </li>
-            <li title="Language">
+            {{--  <li title="Language">
                 <select name="language" id="lang">
                     <option value="1">EN</option>
                     <option value="2">BN</option>
                     <option value="3">HN</option>
                     <option value="4">Ch</option>
                 </select>
-            </li>
+            </li>  --}}
             <li title="Current Date">
-                <strong>12/12/2021</strong>
+                <strong>{{ date('d F Y') }}</strong>
             </li>
             <li title="Notification">
                 <i class="fas fa-bell" aria-hidden="true"></i>
