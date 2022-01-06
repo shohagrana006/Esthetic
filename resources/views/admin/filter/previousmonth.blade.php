@@ -15,7 +15,8 @@
 
                     {{-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"> --}}
                     <div class="col-xl-4" style="text-align: end">
-                        <h3>{{ date(' F ') }} month report</h3>
+                        <h3>{{ date(' F ', strtotime('-1 month')) }} month report</h3>
+
                     </div>
 
                     <div class="col-xl-8">
