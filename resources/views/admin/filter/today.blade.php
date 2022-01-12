@@ -20,17 +20,16 @@
                                     Filter
                                   </button>
                                           <ul class="dropdown-menu">
-                                            {{--  <li><a class="dropdown-item" href="{{ route('expense.today') }}">Today</a></li>  --}}
-                                            <li><a class="dropdown-item" href="{{ route('dashboard.today') }}">Today</a></li>
-                                            <li><a class="dropdown-item" href="{{ route('dashboard.yesterday') }}">Yesterday</a></li>
-                                            {{--  <li><a class="dropdown-item" href="#">Last 7 days</a></li>
-                                            <li><a class="dropdown-item" href="#">Last 30 days</a></li>  --}}
-                                            <li><a class="dropdown-item" href="{{ route('dashboard.month') }}">This Month</a></li>
-                                            <li><a class="dropdown-item" href="{{ route('dashboard.previous_month') }}">Last Month</a></li>
-                                            {{--  <li><a class="dropdown-item" href="#">This Year</a></li>
-                                            <li><a class="dropdown-item" href="#">Last Year</a></li>
-                                            <li><a class="dropdown-item" href="#">Current Financial Year</a></li>
-                                            <li><a class="dropdown-item" href="#">Last Financial Year</a></li>  --}}
+                                    <li><a class="dropdown-item" href="{{ route('dashboard.today') }}">Today</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('dashboard.yesterday') }}">Yesterday</a></li>
+                                    {{--  <li><a class="dropdown-item" href="#">Last 7 days</a></li>
+                                    <li><a class="dropdown-item" href="#">Last 30 days</a></li>  --}}
+                                    <li><a class="dropdown-item" href="{{ route('dashboard.month') }}">This Month</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('dashboard.previous_month') }}">Last Month</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('dashboard.yearly') }}">This Year</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('dashboard.previous_year') }}">Last Year</a></li>
+                                    {{--  <li><a class="dropdown-item" href="#">Current Financial Year</a></li>
+                                    <li><a class="dropdown-item" href="#">Last Financial Year</a></li>    --}}
                                            </ul>
                                 </span>
 
