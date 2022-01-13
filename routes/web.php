@@ -169,13 +169,56 @@ Route::group(
             'ExpenseController@yearly_expense'
         )->name('expense.yearly');
 
-        //invoice route
-        Route::get('invoice/index', 'InvoiceController@index')->name('sale.index');
-        Route::get('invoice/create', 'InvoiceController@create')->name('sale.create');
-        Route::get('product/search/{sku}', 'InvoiceController@productSearch')->name('sale.search');
-        Route::post('invoice/store', 'InvoiceController@store')->name('sale.store');
-        Route::get('invoice/delete/{id}', 'InvoiceController@destroy')->name('sale.delete');
-        Route::get('invoice/pending', 'InvoiceController@getPending')->name('sale.pending');
+           //invoice route
+
+       Route::get('order/pending', 'InvoiceController@pending_order')->name('order.pending');
+
+       Route::post('invoice', 'InvoiceController@createinvoice')->name('invoice.create');
+       Route::get('print/{customer_id}', 'InvoiceController@print')->name('invoice.print');
+
+       Route::post('invoice/add', 'InvoiceController@addCard')->name(
+        'invoice.add.card');
+       Route::post('invoice-final', 'InvoiceController@final_invoice')->name('invoice.final_invoice');
+
+       Route::get('order/show/{id}', 'InvoiceController@show')->name('order.show');
+       Route::get('order/download/{id}', 'InvoiceController@order_print')->name('order.download');
+
+       Route::get('order/delete/{id}', 'InvoiceController@delete')->name('order.destroy');
+
+
+
+
+       Route::post('update/card', 'InvoiceController@updateCard')->name(
+        'admin.cart.update'
+    );
+    Route::get(
+        'cartproduct/remove/{id}',
+        'InvoiceController@RemoveProduct'
+    );
+    Route::get(
+        'cartproduct/updateqty/{rowId}/{qty}',
+        'InvoiceController@updateqty'
+    );
+
+    Route::get('invoice/index', 'InvoiceController@index')->name(
+        'sale.index'
+    );
+    Route::get('invoice/create', 'InvoiceController@create')->name(
+        'sale.create'
+    );
+    Route::get('product/search', 'InvoiceController@productSearch')->name(
+        'sale.search'
+    );
+    Route::post('invoice/store', 'InvoiceController@store')->name(
+        'sale.store'
+    );
+    Route::get('invoice/delete/{id}', 'InvoiceController@destroy')->name(
+        'sale.delete'
+    );
+    Route::get('invoice/pending', 'InvoiceController@getPending')->name(
+        'sale.pending'
+    );
+
 
         // Bussiness
         Route::resource('bussiness', BussinessController::class);
