@@ -124,7 +124,6 @@
                         <h5>Damaged Products <span>
                                 <strong><i class="fas fa-dollar-sign"></i>
                                    {{ $damage->sum('damage_quantity') }}
-
                                 </strong>
                             </span>
                         </h5>
