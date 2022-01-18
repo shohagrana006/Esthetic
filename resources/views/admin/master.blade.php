@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,16 +17,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     @stack('css')
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
 
     <div class="preloader flex-column justify-content-center align-items-center">
         <img class="animation__shake" src="{{ asset('public') }}/admin/img/AestheticPOS.png" alt="AestheticPOS" height="auto" width="25%">
     </div>
-        @include('admin.includes.navbar')
-        @include('admin.includes.sidebar')
+    @include('admin.includes.navbar')
+    @include('admin.includes.sidebar')
 
 
-      <div class="content-wrapper">
+    <div class="content-wrapper">
         <div class="content-header">
             <div class="container-fluid">
                 <!-- mainbody start-->
@@ -67,8 +69,7 @@
     </script>
 
     <script>
-        AmCharts.loadFile("https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/22300.csv", {}, function(response) {
-
+        AmCharts.loadFile("https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/22300.csv", {}, function (response) {
             /**
              * Parse CSV
              */
@@ -112,46 +113,50 @@
             });
 
         });
+
     </script>
-     <script src="{{ asset('public/admin/plugins/sweetalert/sweetalert.min.js') }}"></script>
-     <script>
-        $(document).on("click", "#delete", function(e){
+    <script src="{{ asset('public/admin/plugins/sweetalert/sweetalert.min.js') }}"></script>
+    <script>
+        $(document).on("click", "#delete", function (e) {
             e.preventDefault();
             var link = $(this).attr("href");
-               swal({
-                 title: "Are you Want to delete?",
-                 text: "Once Delete, This will be Permanently Delete!",
-                 icon: "warning",
-                 buttons: true,
-                 dangerMode: true,
-               })
-               .then((willDelete) => {
-                 if (willDelete) {
-                      window.location.href = link;
-                 } else {
-                   swal("Safe Data!");
-                 }
-               });
-           });
-   </script>
+            swal({
+                    title: "Are you Want to delete?",
+                    text: "Once Delete, This will be Permanently Delete!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = link;
+                    } else {
+                        swal("Safe Data!");
+                    }
+                });
+        });
+
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     {!! Toastr::message() !!}
     <script>
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-                  toastr.error('{{ $error }}','Error',{
-                      closeButton:true,
-                      progressBar:true,
-                   });
-            @endforeach
+        @if($errors - > any())
+        @foreach($errors - > all() as $error)
+        toastr.error('{{ $error }}', 'Error', {
+            closeButton: true,
+            progressBar: true,
+        });
+        @endforeach
         @endif
+
     </script>
     <script>
         if ($(".menu-show ul li a").hasClass('active')) {
             $(".active .nav-treeview").addClass("d-block");
-        } else{
+        } else {
             $(".active .nav-treeview").removeClass("d-block");
-        }   
+        }
+
     </script>
 
     @stack('js')

@@ -311,12 +311,12 @@
                         </li>
                         <li class="nav-item">
                             {{-- <a href="{{ url('addsale') }}" class="nav-link"> --}}
-                            <a href="{{ route('sale.create') }}"
+                            {{-- <a href="{{ route('sale.create') }}"
                                 class="nav-link {{Route::is('sale.create') ? 'active' : ''}}">
 
                                 <i class="sub-nav fas fa-chevron-right"></i>
                                 <p>Add Sales</p>
-                            </a>
+                            </a> --}}
                         </li>
                     </ul>
                 </li>
