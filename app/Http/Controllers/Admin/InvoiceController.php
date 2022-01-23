@@ -112,6 +112,16 @@ class InvoiceController extends Controller
             $order_detail->unit_cost = $content->price;
             $order_detail->total = $content->total;
             $order_detail->save();
+
+            $product = Product::where(
+                'id', $content->id
+                // $purchase->product_id
+            )->first();
+            $purchase_qty =
+                ((float) $product->quantity)-
+                ((float)$content->qty);
+            $product->quantity = $purchase_qty;
+             $product->save();
         }
 
         Cart::destroy();
@@ -154,7 +164,7 @@ class InvoiceController extends Controller
 
     public function index()
     {
-        $products = Product::with('category')->get();
+        $products = Product::with('category')->where('quantity','>',0)->get();
         $customers = Customer::all();
         $cart_products = Cart::content();
 
